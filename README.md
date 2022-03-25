@@ -1,6 +1,9 @@
-# Project Name
-Put here a short paragraph describing your project. 
-Adding an screenshot or a mockup of your application in action would be nice.  
+# Tetris
+This project will be a modification of the classic arcade game, Tetris. Tetris was originally created by Alexey Pajitnov in 1984. It's a puzzle and tile-matching game. There are essentially are a variety of different shaped blocks and the game has a simple goal of destroying lines of blocks before it reaches the top. The game is designed such that it is possible to completely fill the width of the window, which eliminates that “row.” This iteration of Tetris is faithful to the original version in terms of gameplay but features a more modern UI. The proposed modifications to the source code would add on different game modes that were not featured in the original game. Since the game is so popular, other versions of Tetris exist on the web, but will not be consulted in the development of these modifications.
+
+The product is a browser-based version of the classic mode of Tetris. The languages used are JavaScript, CSS, and HTML. There is no hardware or OS requirement since it is a web-based game. This project intends to add newer forms of Tetris, such as a puzzle mode (users given a predetermined state of Tetris to solve), a time trial mode, or even an implementation of an online mode.
+
+Citation for the history of Tetris, from the official Tetris website: https://tetris.com/history-of-tetris 
 
 ![This is a screenshot.](images.png)
 # How to run
