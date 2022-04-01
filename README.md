@@ -20,7 +20,7 @@ tar -xzf
 - You will see Hello World! on your terminal. 
 
 # How to contribute
-Follow this project board to know the latest status of the project: [http://...]([http://...])  
+Follow this [project board](http://trello.com/b/sWlulrWJ/tetris) to be informed of the project's status.
 
 ### How to build
 - Use this github repository: ... 
