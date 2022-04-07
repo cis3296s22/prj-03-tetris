@@ -12,8 +12,8 @@ body, table, input {
 
 #tetris	{
 	position: relative;
-	width: 300px;
-	height:	309px;
+	width: 500px;
+	height:	400px;
 	background:	#fff;
 	border:	#BE9E7C	1px	solid;
 }
@@ -28,15 +28,24 @@ body, table, input {
 }
 .left-border { background: #E4BE95;	position: absolute;	z-index: 100; top: 0px;	left: 130px; width:	1px; height: 100%; }
 
-#tetris-area {
+#tetris-area1 {
+	/* 168,308 +2px	borders */
+	background:	#fff;
+	position: absolute;
+	width: 167px;
+	height:	307px;
+	left: 300px;
+	top: 1px;
+	overflow: hidden;
+}
+#tetris-area2 {
 	/* 168,308 +2px	borders	*/
 	background:	#fff;
 	position: absolute;
 	width: 167px;
 	height:	307px;
-	left: 132px;
+	left: 150px;
 	top: 1px;
-	overflow: hidden;
 }
 
 .grid1,	.grid2,	.grid3,	.grid4,	.grid5,	.grid6 { z-index: 10; position:	absolute; top: 0px;	width: 13px; height: 307px;	background:	#f4efe9; }
@@ -47,13 +56,27 @@ body, table, input {
 .grid5 { left: 126px; }
 .grid6 { left: 154px; }
 
+.grid7,	.grid8,	.grid9,	.grid10,	.grid11,	.grid12 { z-index: 10; position:	absolute; top: 0px;	width: 13px; height: 307px;	background:	#f4efe9; }
+.grid7 { left: 182px; }
+.grid8 { left: 210px; }
+.grid9 { left: 238px; }
+.grid10 { left: 266px; }
+.grid11 { left: 294px; }
+.grid12 { left: 322px; }
+
 #tetris	.block0,
 #tetris	.block1,
 #tetris	.block2,
 #tetris	.block3,
 #tetris	.block4,
 #tetris	.block5,
-#tetris	.block6	{
+#tetris	.block6,
+#tetris	.block7,
+#tetris	.block8,
+#tetris	.block9,
+#tetris	.block10,
+#tetris	.block11,
+#tetris	.block12 {
 	z-index: 1000;
 	font-size: 10px;
 	line-height: 1em;
@@ -123,16 +146,22 @@ body, table, input {
 /* next	puzzle */
 #tetris-nextpuzzle {
 	position: absolute;
-	top: 47%;
-	left: 35%;
+	/*top: 47%;
+	left: 35%;*/
 	background:	#ffffff;
 	overflow: visible;
 	display: none;
 }
-#tetris-keys {
+
+#tetris-keys-player1 {
 	position: absolute;
 	left: 25px;
-	top: 135px;
+	top: 150px;
+}
+#tetris-keys-player2{
+	position: absolute;
+	left: 25px;
+	top: 220px;
 }
 #tetris div.h5 { margin-bottom: 0.5em; display: block; font-weight: bold; }
 #tetris-keys td { padding-right: 1px; padding-bottom: 1px; }
