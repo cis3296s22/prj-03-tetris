@@ -58,11 +58,17 @@
  * public void setLines(int i)
  * public void setPuzzles(int i)
  * public void setActions(int i)
+ * public void setLeftMovements(int i)
+ * public void setRightMovements(int i)
+ * public void setRotations(int i)
  * public int getScore()
  * public int getLevel()
  * public int getLines()
  * public int getPuzzles()
  * public int getActions()
+ * public int getLeftMovements()
+ * public int getRightMovements()
+ * public int getRotations()
  *
  * class Area
  * ----------
@@ -254,6 +260,7 @@ function Tetris()
 			if (self.puzzle.mayRotate()) {
 				self.puzzle.rotate();
 				self.stats.setActions(self.stats.getActions() + 1);
+				self.stats.setRotations(self.stats.getRotations() + 1);
 			}
 		}
 	};
@@ -266,8 +273,9 @@ function Tetris()
 	 {
 		 if (self.puzzle && self.puzzle.isRunning() && !self.puzzle.isStopped()&& (self.puzzle.number % 2 == 1) ) {
 			 if (self.puzzle.mayRotate()) {
-				 self.puzzle.rotate();
-				 self.stats.setActions(self.stats.getActions() + 1);
+				self.puzzle.rotate();
+				self.stats.setActions(self.stats.getActions() + 1);
+				self.stats.setRotations(self.stats.getRotations() + 1); 
 			 }
 		 }
 	 };
@@ -308,6 +316,7 @@ function Tetris()
 			if (self.puzzle.mayMoveLeft()) {
 				self.puzzle.moveLeft();
 				self.stats.setActions(self.stats.getActions() + 1);
+				self.stats.setLeftMovements(self.stats.getLeftMovements() + 1);
 			}
 		}
 	};
@@ -320,8 +329,9 @@ function Tetris()
 	 {
 		 if (self.puzzle && self.puzzle.isRunning() && !self.puzzle.isStopped() && (self.puzzle.number % 2 == 1) ) {
 			 if (self.puzzle.mayMoveLeft()) {
-				 self.puzzle.moveLeft();
-				 self.stats.setActions(self.stats.getActions() + 1);
+				self.puzzle.moveLeft();
+				self.stats.setActions(self.stats.getActions() + 1);
+				self.stats.setLeftMovements(self.stats.getLeftMovements() + 1);
 			 }
 		 }
 	 };
@@ -337,6 +347,7 @@ function Tetris()
 			if (self.puzzle.mayMoveRight()) {
 				self.puzzle.moveRight();
 				self.stats.setActions(self.stats.getActions() + 1);
+				self.stats.setRightMovements(self.stats.getRightMovements() + 1);
 			}
 		}
 	};
@@ -349,8 +360,9 @@ function Tetris()
 	 {
 		 if (self.puzzle && self.puzzle.isRunning() && !self.puzzle.isStopped() && (self.puzzle.number % 2 == 1) ) {
 			 if (self.puzzle.mayMoveRight()) {
-				 self.puzzle.moveRight();
-				 self.stats.setActions(self.stats.getActions() + 1);
+				self.puzzle.moveRight();
+				self.stats.setActions(self.stats.getActions() + 1);
+				self.stats.setRightMovements(self.stats.getRightMovements() + 1);
 			 }
 		 }
 	 };
@@ -537,13 +549,20 @@ function Tetris()
 		this.puzzles; // number of puzzles created on current level
 
 		this.actions;
+		this.leftMovements;
+		this.rightMovements;
+		this.rotations;
 
 		this.el = {
 			"level": document.getElementById("tetris-stats-level"),
 			"time":  document.getElementById("tetris-stats-time"),
 			"apm":  document.getElementById("tetris-stats-apm"),
 			"lines": document.getElementById("tetris-stats-lines"),
-			"score": document.getElementById("tetris-stats-score")
+			"score": document.getElementById("tetris-stats-score"),
+			"actions": document.getElementById("tetris-stats-actions"),
+			"leftMovements": document.getElementById("tetris-stats-left-movements"),
+			"rightMovements": document.getElementById("tetris-stats-right-movements"),
+			"rotations": document.getElementById("tetris-stats-rotations")
 		}
 
 		this.timerId = null;
@@ -587,11 +606,18 @@ function Tetris()
 			this.score = 0;
 			this.puzzles = 0;
 			this.actions = 0;
+			this.leftMovements = 0;
+			this.rightMovements = 0;
+			this.rotations = 0;
 			this.el.level.innerHTML = this.level;
 			this.el.time.innerHTML = this.time;
 			this.el.apm.innerHTML = this.apm;
 			this.el.lines.innerHTML = this.lines;
 			this.el.score.innerHTML = this.score;
+			this.el.actions.innerHTML = this.actions;
+			this.el.leftMovements.innerHTML = this.leftMovements;
+			this.el.rightMovements.innerHTML = this.rightMovements;
+			this.el.rotations.innerHTML = this.rotations;
 		};
 
 		/**
@@ -663,8 +689,38 @@ function Tetris()
 		this.setActions = function(i)
 		{
 			this.actions = i;
+			this.el.actions.innerHTML = this.actions;
 		};
-
+		/**
+		 * @param int i
+		 * @return void
+		 * @access public
+		 */
+		this.setLeftMovements = function(i)
+		{
+			this.leftMovements = i;
+			this.el.leftMovements.innerHTML = this.leftMovements;
+		};
+		/**
+		 * @param int i
+		 * @return void
+		 * @access public
+		 */
+		this.setRightMovements = function(i)
+		{
+			this.rightMovements = i;
+			this.el.rightMovements.innerHTML = this.rightMovements;
+		};
+		/**
+		 * @param int i
+		 * @return void
+		 * @access public
+		 */
+		this.setRotations = function(i)
+		{
+			this.rotations = i;
+			this.el.rotations.innerHTML = this.rotations;
+		};
 		/**
 		 * @return int
 		 * @access public
@@ -710,6 +766,30 @@ function Tetris()
 		{
 			return this.actions;
 		};
+		/**
+		 * @return int
+		 * @access public
+		 */
+		this.getLeftMovements = function()
+		{
+			return this.leftMovements;
+		};
+		/**
+		 * @return int
+		 * @access public
+		 */
+		this.getRightMovements = function()
+		{
+			return this.rightMovements;
+		};
+		/**
+		 * @return int
+		 * @access public
+		*/
+		this.getRotations = function()
+		{
+			return this.rotations;
+		}
 	}
 
 	/**
