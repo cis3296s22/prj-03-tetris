@@ -119,6 +119,7 @@
  * document.getElementById("tetris-nextpuzzle") cache ?
  *
  */
+
 function Tetris()
 {
 	var self = this;
@@ -127,9 +128,9 @@ function Tetris()
 	this.puzzle = null;
 	this.area = null;
 
-	this.unit  = 20; // unit = x pixels
-	this.areaX = 20; // area width = x units
-	this.areaY = 20; // area height = y units
+	this.unit; // unit = x pixels
+	this.areaX; // area width = x units
+	this.areaY;// area height = y units
 
 	this.highscores = new Highscores(10);
 	this.paused = false;
@@ -143,16 +144,36 @@ function Tetris()
 		if (self.puzzle && !confirm('Are you sure you want to start a new game ?')) return;
 		self.reset();
 		self.stats.start();
-		document.getElementById("tetris-nextpuzzle").style.display = "block";
-		document.getElementById("tetris-keys").style.display = "none";
-		self.area = new Area(self.unit, self.areaX, self.areaY, "tetris-area");
-		self.puzzle = new Puzzle(self, self.area);
+		//document.getElementById("tetris-nextpuzzle").style.display = "block";
+		//document.getElementById("tetris-keys-player1").style.display = "none";
+		self.area = new Area(self.unit, self.areaX, self.areaY, "tetris-area1");
+		self.puzzle = new Puzzle(self, self.area, true);
 		if (self.puzzle.mayPlace()) {
 			self.puzzle.place();
 		} else {
 			self.gameOver();
 		}
 	};
+
+	/**
+	 * @return void
+	 * @access public event
+	 */
+	 this.multiplayer = function()
+	 {
+		if (self.puzzle && !confirm('Are you sure you want to start a new game ?')) return;
+		self.reset();
+		self.stats.start();
+		//document.getElementById("tetris-nextpuzzle").style.display = "block";
+		//document.getElementById("tetris-keys-player1").style.display = "none";
+		self.area = new Area(self.unit, self.areaX, self.areaY, "tetris-area1");
+		self.puzzle = new Puzzle(self, self.area, false);
+		if (self.puzzle.mayPlace()) {
+			self.puzzle.place();
+		} else {
+			self.gameOver();
+		}
+	 };
 
 	/**
 	 * @return void
@@ -170,7 +191,7 @@ function Tetris()
 		}
 		document.getElementById("tetris-gameover").style.display = "none";
 		document.getElementById("tetris-nextpuzzle").style.display = "none";
-		document.getElementById("tetris-keys").style.display = "block";
+		document.getElementById("tetris-keys-player1").style.display = "block";
 		self.stats.reset();
 		self.paused = false;
 		document.getElementById('tetris-pause').style.display = 'block';
@@ -229,7 +250,7 @@ function Tetris()
 	 */
 	this.up = function()
 	{
-		if (self.puzzle && self.puzzle.isRunning() && !self.puzzle.isStopped()) {
+		if (self.puzzle && self.puzzle.isRunning() && !self.puzzle.isStopped()&& (self.puzzle.number % 2 == 0) ) {
 			if (self.puzzle.mayRotate()) {
 				self.puzzle.rotate();
 				self.stats.setActions(self.stats.getActions() + 1);
@@ -241,9 +262,34 @@ function Tetris()
 	 * @return void
 	 * @access public event
 	 */
+	 this.up2 = function()
+	 {
+		 if (self.puzzle && self.puzzle.isRunning() && !self.puzzle.isStopped()&& (self.puzzle.number % 2 == 1) ) {
+			 if (self.puzzle.mayRotate()) {
+				 self.puzzle.rotate();
+				 self.stats.setActions(self.stats.getActions() + 1);
+			 }
+		 }
+	 };
+
+	/**
+	 * @return void
+	 * @access public event
+	 */
 	this.down = function()
 	{
-		if (self.puzzle && self.puzzle.isRunning() && !self.puzzle.isStopped()) {
+		if (self.puzzle && self.puzzle.isRunning() && !self.puzzle.isStopped() && (self.puzzle.number % 2 == 0) ) {
+			if (self.puzzle.mayMoveDown()) {
+				self.stats.setScore(self.stats.getScore() + 5 + self.stats.getLevel());
+				self.puzzle.moveDown();
+				self.stats.setActions(self.stats.getActions() + 1);
+			}
+		}
+	};
+
+	this.down2 = function()
+	{
+		if (self.puzzle && self.puzzle.isRunning() && !self.puzzle.isStopped() && (self.puzzle.number % 2 == 1) ) {
 			if (self.puzzle.mayMoveDown()) {
 				self.stats.setScore(self.stats.getScore() + 5 + self.stats.getLevel());
 				self.puzzle.moveDown();
@@ -258,7 +304,7 @@ function Tetris()
 	 */
 	this.left = function()
 	{
-		if (self.puzzle && self.puzzle.isRunning() && !self.puzzle.isStopped()) {
+		if (self.puzzle && self.puzzle.isRunning() && !self.puzzle.isStopped() && (self.puzzle.number % 2 == 0) ) {
 			if (self.puzzle.mayMoveLeft()) {
 				self.puzzle.moveLeft();
 				self.stats.setActions(self.stats.getActions() + 1);
@@ -270,9 +316,24 @@ function Tetris()
 	 * @return void
 	 * @access public event
 	 */
+	 this.left2 = function()
+	 {
+		 if (self.puzzle && self.puzzle.isRunning() && !self.puzzle.isStopped() && (self.puzzle.number % 2 == 1) ) {
+			 if (self.puzzle.mayMoveLeft()) {
+				 self.puzzle.moveLeft();
+				 self.stats.setActions(self.stats.getActions() + 1);
+			 }
+		 }
+	 };
+ 
+
+	/**
+	 * @return void
+	 * @access public event
+	 */
 	this.right = function()
 	{
-		if (self.puzzle && self.puzzle.isRunning() && !self.puzzle.isStopped()) {
+		if (self.puzzle && self.puzzle.isRunning() && !self.puzzle.isStopped() && (self.puzzle.number % 2 == 0) ) {
 			if (self.puzzle.mayMoveRight()) {
 				self.puzzle.moveRight();
 				self.stats.setActions(self.stats.getActions() + 1);
@@ -284,13 +345,39 @@ function Tetris()
 	 * @return void
 	 * @access public event
 	 */
+	 this.right2 = function()
+	 {
+		 if (self.puzzle && self.puzzle.isRunning() && !self.puzzle.isStopped() && (self.puzzle.number % 2 == 1) ) {
+			 if (self.puzzle.mayMoveRight()) {
+				 self.puzzle.moveRight();
+				 self.stats.setActions(self.stats.getActions() + 1);
+			 }
+		 }
+	 };
+
+	/**
+	 * @return void
+	 * @access public event
+	 */
 	this.space = function()
 	{
-		if (self.puzzle && self.puzzle.isRunning() && !self.puzzle.isStopped()) {
+		if (self.puzzle && self.puzzle.isRunning() && !self.puzzle.isStopped() && (self.puzzle.number % 2 == 0) ) {
 			self.puzzle.stop();
 			self.puzzle.forceMoveDown();
 		}
 	};
+
+	/**
+	 * @return void
+	 * @access public event
+	 */
+	 this.tab = function()
+	 {
+		 if (self.puzzle && self.puzzle.isRunning() && !self.puzzle.isStopped() && (self.puzzle.number % 2 == 1) ) {
+			 self.puzzle.stop();
+			 self.puzzle.forceMoveDown();
+		 }
+	 };
 
 	// windows
 	var helpwindow = new Window("tetris-help");
@@ -298,7 +385,7 @@ function Tetris()
 
 	// game menu
 	document.getElementById("tetris-menu-start").onclick = function() { helpwindow.close(); highscores.close(); self.start(); this.blur(); };
-
+	document.getElementById("tetris-menu-multiplayer-start").onclick = function() { helpwindow.close(); highscores.close(); self.multiplayer(); this.blur(); };
 	// document.getElementById("tetris-menu-reset").onclick = function() { helpwindow.close(); highscores.close(); self.reset(); this.blur(); };
 
 	document.getElementById("tetris-menu-pause").onclick = function() { self.pause(); this.blur(); };
@@ -330,10 +417,15 @@ function Tetris()
 	//keyboard.set(keyboard.r, this.reset);
 	keyboard.set(keyboard.p, this.pause);
 	keyboard.set(keyboard.up, this.up);
+	keyboard.set(keyboard.up2, this.up2);
 	keyboard.set(keyboard.down, this.down);
+	keyboard.set(keyboard.down2, this.down2);
 	keyboard.set(keyboard.left, this.left);
+	keyboard.set(keyboard.left2, this.left2);
 	keyboard.set(keyboard.right, this.right);
+	keyboard.set(keyboard.right2, this.right2);
 	keyboard.set(keyboard.space, this.space);
+	keyboard.set(keyboard.tab, this.tab);
 	document.onkeydown = keyboard.event;
 
 	/**
@@ -383,13 +475,18 @@ function Tetris()
 	function Keyboard()
 	{
 		this.up = 38;
+		this.up2 = 87;
 		this.down = 40;
+		this.down2 = 83;
 		this.left = 37;
+		this.left2 = 65;
 		this.right = 39;
+		this.right2 = 68;
 		this.n = 78;
 		this.p = 80;
 		this.r = 82;
 		this.space = 32;
+		this.tab = 9;
 		this.f12 = 123;
 		this.escape = 27;
 
@@ -756,16 +853,18 @@ function Tetris()
 	 * Puzzle consists of blocks.
 	 * Each puzzle after rotating 4 times, returns to its primitive position.
 	 */
-	function Puzzle(tetris, area)
+	function Puzzle(tetris, area, bool)
 	{
 		var self = this;
 		this.tetris = tetris;
 		this.area = area;
 
+		console.log(bool);
 		// timeout ids
 		this.fallDownID = null;
 		this.forceMoveDownID = null;
 
+		this.number = null; 
 		this.type = null; // 0..6
 		this.nextType = null; // next puzzle
 		this.position = null; // 0..3
@@ -833,6 +932,14 @@ function Tetris()
 			if (this.forceMoveDownID) {
 				clearTimeout(this.forceMoveDownID);
 			}
+			
+			if(bool == true){
+				this.number = this.number;
+			}
+			else{
+				this.number = this.number + 1;
+			}
+			
 			this.type = this.nextType;
 			this.nextType = random(this.puzzles.length);
 			this.position = 0;

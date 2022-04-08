@@ -21,6 +21,7 @@
 			<h1><a href="https://github.com/cztomczak/jstetris">Js	Tetris 1.20</a></h1>
 			<div class="menu">
 				<div><a href="javascript:void(0)" id="tetris-menu-start">New Game</a></div>
+				<div><a href="javascript:void(0)" id="tetris-menu-multiplayer-start">Multiplayer</a></div>
 				<div id="tetris-pause">
 					<a href="javascript:void(0)" id="tetris-menu-pause">Pause</a>
 				</div>
@@ -32,8 +33,8 @@
 			</div>
 			<div id="tetris-nextpuzzle"></div>
 			<div id="tetris-gameover">Game Over</div>
-			<div id="tetris-keys">
-				<div class="h5">Keyboard:</div>
+			<div id="tetris-keys-player1">
+				<div class="h5">Player 1:</div>
 				<table cellspacing="0" cellpadding="0">
 				<tr>
 					<td>Rotate:</td>
@@ -51,6 +52,29 @@
 					<td>Fall:</td>
 					<td colspan="3">
 						<img src="key-space.gif" width="44" height="13" alt="">
+					</td>
+				</tr>
+				</table>
+			</div>
+			<div id="tetris-keys-player2">
+				<div class="h5">Player 2:</div>
+				<table cellspacing="0" cellpadding="0">
+				<tr>
+					<td>Rotate:</td>
+					<td></td>
+					<td><img src="w-key.png" width="14" height="14" alt=""></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Move:</td>
+					<td><img src="a-key.png" width="14" height="14" alt=""></td>
+					<td><img src="s-key.png" width="14" height="14" alt=""></td>
+					<td><img src="d-key.png" width="14" height="14" alt=""></td>
+				</tr>
+				<tr>
+					<td>Fall:</td>
+					<td colspan="3">
+						<img src="tab-key.png" width="28" height="13" alt="">
 					</td>
 				</tr>
 				</table>
@@ -83,7 +107,7 @@
 			</div>
 		</div>
 		<div class="left-border"></div>
-		<div id="tetris-area">
+		<div id="tetris-area1">
 			<div class="grid1"></div>
 			<div class="grid2"></div>
 			<div class="grid3"></div>
@@ -91,6 +115,7 @@
 			<div class="grid5"></div>
 			<div class="grid6"></div>
 		</div>
+		
 		<div id="tetris-help" class="window">
 			<div class="top">
 				About <span id="tetris-help-close" class="close">x</span>
@@ -122,11 +147,16 @@
 
 </td></tr></table>
 
+	
 	<script	type="text/javascript">
 	var tetris = new Tetris();
 	tetris.unit = 14;
 	tetris.areaX = 12;
 	tetris.areaY = 22;
+	/*var tetris2 = new Tetris();
+	tetris2.unit = 14;
+	tetris2.areaX = 12;
+	tetris.areaY = 22*/
 	</script>
 
 </body>
