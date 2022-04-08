@@ -13,7 +13,7 @@ body, table, input {
 #tetris	{
 	position: relative;
 	width: 500px;
-	height:	400px;
+	height:	450px;
 	background:	#fff;
 	border:	#BE9E7C	1px	solid;
 }
@@ -155,12 +155,12 @@ body, table, input {
 
 #tetris-keys-player1 {
 	position: absolute;
-	left: 25px;
+	left: 10px;
 	top: 150px;
 }
 #tetris-keys-player2{
 	position: absolute;
-	left: 25px;
+	left: 10px;
 	top: 220px;
 }
 #tetris div.h5 { margin-bottom: 0.5em; display: block; font-weight: bold; }
@@ -171,7 +171,7 @@ body, table, input {
 
 #tetris	.left .stats {
 	position: absolute;
-	left: 25px;
+	left: 10px;
 	bottom:	5px;
 }
 #tetris	.stats td {	padding-bottom:	1px; line-height: 1.25em; }
@@ -194,10 +194,10 @@ body, table, input {
 #tetris .stats .actions { text-align:	left; padding-right; 5px; }
 #tetris-stats-actions	{ font-weight: bold; }
 
-#tetris .stats .leftMovements { text-align:	left; padding-right; 5px; }
+#tetris .stats .leftMovements { text-align:	left; padding-right; 20px; }
 #tetris-stats-left-movements  { font-weight: bold; }
 
-#tetris .stats .rightMovements { text-align:	left; padding-right; 5px; }
+#tetris .stats .rightMovements { text-align:	left; padding-right; 20px; }
 #tetris-stats-right-movements  { font-weight: bold; }
 
 #tetris .stats .rotations { text-align:	left; padding-right; 5px; }
