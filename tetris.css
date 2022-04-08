@@ -191,6 +191,17 @@ body, table, input {
 #tetris	.stats .score {	text-align:	left; padding-right: 5px; }
 #tetris-stats-score	{ font-weight: bold; }
 
+#tetris .stats .actions { text-align:	left; padding-right; 5px; }
+#tetris-stats-actions	{ font-weight: bold; }
+
+#tetris .stats .leftMovements { text-align:	left; padding-right; 5px; }
+#tetris-stats-left-movements  { font-weight: bold; }
+
+#tetris .stats .rightMovements { text-align:	left; padding-right; 5px; }
+#tetris-stats-right-movements  { font-weight: bold; }
+
+#tetris .stats .rotations { text-align:	left; padding-right; 5px; }
+#tetris-stats-rotations   { font-weight: bold; }
 
 /*
 	|
