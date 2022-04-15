@@ -1,7 +1,7 @@
 html, body { margin: 0;	padding: 0;	}
 
 body {
-	background:	#E1D4C0;
+	background-color: Bisque;
 }
 body, table, input {
 	font-size: 11px;
@@ -21,12 +21,12 @@ body, table, input {
 #tetris	.left {
 	background:	#F5EDE3;
 	position: absolute;
-	width: 131px;
+	width: 150px;
 	height:	100%;
 	left: 0px;
 	top: 0px;
 }
-.left-border { background: #E4BE95;	position: absolute;	z-index: 100; top: 0px;	left: 130px; width:	1px; height: 100%; }
+.left-border { background: #E4BE95;	position: absolute;	z-index: 100; top: 0px;	left: 150px; width:	1px; height: 100%; }
 
 #tetris-area1 {
 	/* 168,308 +2px	borders */
@@ -38,15 +38,14 @@ body, table, input {
 	top: 1px;
 	overflow: hidden;
 }
-#tetris-area2 {
-	/* 168,308 +2px	borders	*/
-	background:	#fff;
-	position: absolute;
-	width: 167px;
-	height:	307px;
-	left: 150px;
-	top: 1px;
-}
+
+#switch {
+	position: relative;
+	top: 0px;
+	left: 0px;
+	width: 25px;
+	height: 15px;
+  }
 
 .grid1,	.grid2,	.grid3,	.grid4,	.grid5,	.grid6 { z-index: 10; position:	absolute; top: 0px;	width: 13px; height: 307px;	background:	#f4efe9; }
 .grid1 { left: 14px; }
@@ -136,8 +135,10 @@ body, table, input {
 
 #tetris-gameover {
 	position: absolute;
+	font-family: fantasy;
+	font-size: 50px;
 	width: 100%;
-	top: 50%;
+	top: 10%;
 	text-align:	center;
 	font-weight: bold;
 	display: none;
@@ -174,34 +175,34 @@ body, table, input {
 	left: 10px;
 	bottom:	5px;
 }
-#tetris	.stats td {	padding-bottom:	1px; line-height: 1.25em; }
+#tetris	.stats td {	padding-bottom:	1px; line-height: 1.25em; white-space: nowrap;}
 
-#tetris	.stats .level {	text-align:	left; padding-right: 5px; }
-#tetris-stats-level	{ font-weight: bold; }
+#tetris	.stats .level {	text-align:	left; padding-right: 5px; white-space: nowrap;}
+#tetris-stats-level	{ font-weight: bold; white-space: nowrap;}
 
-#tetris	.stats .time { text-align: left; padding-right:	5px; }
-#tetris-stats-time { font-weight: bold;	}
+#tetris	.stats .time { text-align: left; padding-right:	5px; white-space: nowrap;}
+#tetris-stats-time { font-weight: bold;	white-space: nowrap;}
 
-#tetris	.stats .apm	{ text-align: left;	padding-right: 5px;	}
-#tetris-stats-apm {	font-weight: bold; }
+#tetris	.stats .apm	{ text-align: left;	padding-right: 5px;	white-space: nowrap;}
+#tetris-stats-apm {	font-weight: bold; white-space: nowrap;}
 
-#tetris	.stats .lines {	text-align:	left; padding-right: 5px; }
-#tetris-stats-lines	{ font-weight: bold; }
+#tetris	.stats .lines {	text-align:	left; padding-right: 5px; white-space: nowrap;}
+#tetris-stats-lines	{ font-weight: bold; white-space: nowrap;}
 
-#tetris	.stats .score {	text-align:	left; padding-right: 5px; }
-#tetris-stats-score	{ font-weight: bold; }
+#tetris	.stats .score {	text-align:	left; padding-right: 5px; white-space: nowrap;}
+#tetris-stats-score	{ font-weight: bold; white-space: nowrap;}
 
-#tetris .stats .actions { text-align:	left; padding-right; 5px; }
-#tetris-stats-actions	{ font-weight: bold; }
+#tetris .stats .actions {	text-align:	left; padding-right: 5px; white-space: nowrap;}
+#tetris-stats-actions	{ font-weight: bold; white-space: nowrap;}
 
-#tetris .stats .leftMovements { text-align:	left; padding-right; 20px; }
-#tetris-stats-left-movements  { font-weight: bold; }
+#tetris .stats .leftMovements {	text-align:	left; padding-right: 20px; white-space: nowrap;}
+#tetris-stats-left-movements  { font-weight: bold; white-space: nowrap;}
 
-#tetris .stats .rightMovements { text-align:	left; padding-right; 20px; }
-#tetris-stats-right-movements  { font-weight: bold; }
+#tetris .stats .rightMovements {	text-align:	left; padding-right: 20px; white-space: nowrap;}
+#tetris-stats-right-movements  { font-weight: bold; white-space: nowrap;}
 
-#tetris .stats .rotations { text-align:	left; padding-right; 5px; }
-#tetris-stats-rotations   { font-weight: bold; }
+#tetris .stats .rotations { text-align:	left; padding-right: 5px; white-space: nowrap;}
+#tetris-stats-rotations   { font-weight: bold; white-space: nowrap;}
 
 /*
 	|
@@ -291,4 +292,31 @@ body, table, input {
 	margin:	10px;
 }
 #tetris	.window	.content table {
+}
+
+#disco1	{
+	position: absolute;
+	left: 75px;
+	top: 0px;
+	width: 280px;
+	height:	300px;
+	display: none
+}
+
+#disco2 {
+	position: absolute;
+	right: 75px;
+	top: 0px;
+	width: 280px;
+	height:	300px;
+	display: none;
+}
+
+#discoDancer {
+	position: absolute;
+	left: 0px;
+	display: none;
+	bottom: 0px;
+	width: 200px;
+	height:	200px;
 }
