@@ -130,6 +130,8 @@ function Tetris()
 {
 	var self = this;
 
+	
+
 	this.stats = new Stats();
 	this.puzzle = null;
 	this.area = null;
@@ -139,6 +141,7 @@ function Tetris()
 	this.areaY;// area height = y units
 
 	this.highscores = new Highscores(10);
+	this.switchOn = false;
 	this.paused = false;
 
 	/**
@@ -394,10 +397,13 @@ function Tetris()
 	// windows
 	var helpwindow = new Window("tetris-help");
 	var highscores = new Window("tetris-highscores");
+	var multiplayerMenu = new Window("multiplayerWindow");
 
 	// game menu
 	document.getElementById("tetris-menu-start").onclick = function() { helpwindow.close(); highscores.close(); self.start(); this.blur(); };
-	document.getElementById("tetris-menu-multiplayer-start").onclick = function() { helpwindow.close(); highscores.close(); self.multiplayer(); this.blur(); };
+	document.getElementById("tetris-menu-multiplayer").onclick = function() { helpwindow.close(); highscores.close(); multiplayerMenu.activate(); this.blur(); };
+	document.getElementById("multiplayerCooperative").onclick = function() { helpwindow.close(); highscores.close(); multiplayerMenu.close(); self.start(); self.multiplayer(); this.blur(); };
+	document.getElementById("multiplayerCooperative").onclick = function() { helpwindow.close(); highscores.close(); self.start(); multiplayerMenu.close(); self.multiplayer(); this.blur(); };
 	// document.getElementById("tetris-menu-reset").onclick = function() { helpwindow.close(); highscores.close(); self.reset(); this.blur(); };
 
 	document.getElementById("tetris-menu-pause").onclick = function() { self.pause(); this.blur(); };
@@ -416,6 +422,8 @@ function Tetris()
 		this.blur();
 	};
 	document.getElementById("tetris-highscores-close").onclick = highscores.close;
+
+	document.getElementById("switch").onclick = function(e){ e.preventDefault(); discoSwitch(); }
 
 	// keyboard - buttons
 	//document.getElementById("tetris-keyboard-up").onclick = function() { self.up(); this.blur(); };
@@ -439,6 +447,49 @@ function Tetris()
 	keyboard.set(keyboard.space, this.space);
 	keyboard.set(keyboard.tab, this.tab);
 	document.onkeydown = keyboard.event;
+
+	function colorChanger(){
+		const colors = ["DarkViolet", "DeepPink", "GreenYellow", "DodgerBlue", "Crimson", "DarkSalmon", "Black"];
+		var select = Math.floor(Math.random() * 6);
+		var BackgroundColor= colors[select];
+		document.body.style.backgroundColor=BackgroundColor;
+	}
+
+	function dancerMover(){
+		console.log(document.getElementById("discoDancer").offsetLeft);
+		var holder = document.getElementById("discoDancer").offsetLeft;
+		holder += 10;
+		if(holder >= 1000){
+			holder = 0;
+		}
+		document.getElementById("discoDancer").style.left = holder + 'px';
+	}
+
+	function discoSwitch(){
+		var px = 0;
+		if(self.switchOn == false){
+			document.getElementById("disco1").style.display = "initial";
+			document.getElementById("disco2").style.display = "initial";
+			document.getElementById("discoDancer").style.display = "initial";
+			document.getElementById("discoMusic").play();
+			colorChange = setInterval(colorChanger, 150);
+			moveDancer = setInterval(dancerMover, 300);
+			self.switchOn = true;
+		}
+		else{
+			document.getElementById("disco1").style.display = "none";
+			document.getElementById("disco2").style.display = "none";
+			document.getElementById("discoDancer").style.display = "none"
+			document.getElementById("discoMusic").pause();
+			clearInterval(colorChange);
+			clearInterval(moveDancer);
+			document.body.style.backgroundColor = "bisque";
+
+			self.switchOn = false;
+		}
+		
+		
+	}
 
 	/**
 	 * Window replaces game area, for example help window

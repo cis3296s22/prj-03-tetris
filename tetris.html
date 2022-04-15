@@ -13,15 +13,17 @@
 	</style>
 </head>
 <body>
+<audio id="discoMusic" src="stayinAlive.webm"></audio>
 
 <table style="width: 100%; height: 100%;" cellspacing="0" cellpadding="0"><tr><td style="vertical-align: middle;">
 
 	<div id="tetris">
 		<div class="left">
-			<h1><a href="https://github.com/cztomczak/jstetris">Js	Tetris 1.20</a></h1>
+			<h1><div><a href="javascript:void(0)" id="switch">Disco Mode</a>
+			</div></h1>
 			<div class="menu">
 				<div><a href="javascript:void(0)" id="tetris-menu-start">New Game</a></div>
-				<div><a href="javascript:void(0)" id="tetris-menu-multiplayer-start">Multiplayer</a></div>
+				<div><a href="javascript:void(0)" id="tetris-menu-multiplayer">Multiplayer</a></div>
 				<div id="tetris-pause">
 					<a href="javascript:void(0)" id="tetris-menu-pause">Pause</a>
 				</div>
@@ -32,7 +34,6 @@
 				<div><a href="javascript:void(0)" id="tetris-menu-help">About</a></div>
 			</div>
 			<div id="tetris-nextpuzzle"></div>
-			<div id="tetris-gameover">Game Over</div>
 			<div id="tetris-keys-player1">
 				<div class="h5">Player 1:</div>
 				<table cellspacing="0" cellpadding="0">
@@ -142,10 +143,25 @@
 				</div>
 				<br>
 				<div>Author: Czarek Tomczak</div>
-				<div>Site: <a href="https://github.com/cztomczak/jstetris">github.com/cztomczak/jstetris</a></div>
+				<div>Site: <a href="https://github.com/cis3296s22/prj-03-tetris">https://github.com/cis3296s22/prj-03-tetris</a></div>
 				<br>
 				<div>License: BSD revised (free for any use)</div>
 				</div>
+			</div>
+		</div>
+		<div id="multiplayerWindow"	class="window">
+			<div class="top">
+				Multiplayer <span id="tetris-highscores-close" class="close">x</span>
+			</div>
+			<div class="content">
+				<div id="tetris-multiplayer-content"></div>
+				<div id="multiplayerCooperative">
+					<a href="javascript:void(0)" id="tetris-menu-pause">Cooperative</a>
+				</div>
+				<div id="multiplayerCompetitive">
+					<a href="javascript:void(0)" id="tetris-menu-pause">Competitive</a>
+				</div>
+				<br>
 			</div>
 		</div>
 		<div id="tetris-highscores"	class="window">
@@ -160,18 +176,25 @@
 		</div>
 	</div>
 
-</td></tr></table>
+	<div id = disco1>
+		<img src="discoBallgif.gif" width="280" height="300" alt="">
+	</div>
 
-	
+	<div id = disco2>
+		<img src="discoBallgif.gif" width="280" height="300" alt="">
+	</div>
+
+	<div id = discoDancer>
+		<img src="discoDance.gif" width="200" height="200" alt="">
+	</div>
+	<div id="tetris-gameover">Game Over</div>
+
+</td></tr></table>
 	<script	type="text/javascript">
 	var tetris = new Tetris();
 	tetris.unit = 14;
 	tetris.areaX = 12;
 	tetris.areaY = 22;
-	/*var tetris2 = new Tetris();
-	tetris2.unit = 14;
-	tetris2.areaX = 12;
-	tetris.areaY = 22*/
 	</script>
 
 </body>
