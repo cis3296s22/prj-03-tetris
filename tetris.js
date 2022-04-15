@@ -297,15 +297,15 @@ function Tetris()
 		// If the player did not manage to clear 20 lines in a sprint game, it should not add a high score.
 		// Otherwise add the sprint high score
 		} else if (wonSprintGame == true) {
-			if (this.sprintHighScores.mayAdd(this.stats.getScore(), true)) {
+			if (this.sprintHighscores.mayAdd(this.stats.getScore(), true)) {
 				var name = prompt("Game Over !\n Edited by Giray, Shiv, and Tommy! Enter your name!:", "");
 				if (name && name.trim().length) {
-					this.garbageHighscores.add(name, this.stats.getScore(), true);
+					this.sprintHighscores.add(name, this.stats.getScore(), true);
 				}
 			}
 		// Add high scores for standard mode
-		} else {
-			if (this.normalHighScores.mayAdd(this.stats.getScore(), false)) {
+		} else if (isSprint == false) {
+			if (this.normalHighscores.mayAdd(this.stats.getScore(), false)) {
 				var name = prompt("Game Over !\n Edited by Giray, Shiv, and Tommy! Enter your name!:", "");
 				if (name && name.trim().length) {
 					this.normalHighscores.add(name, this.stats.getScore(), false);
