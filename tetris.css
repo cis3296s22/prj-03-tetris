@@ -13,7 +13,7 @@ body, table, input {
 #tetris	{
 	position: relative;
 	width: 500px;
-	height:	450px;
+	height:	500px;
 	background:	#fff;
 	border:	#BE9E7C	1px	solid;
 }
@@ -157,12 +157,12 @@ body, table, input {
 #tetris-keys-player1 {
 	position: absolute;
 	left: 10px;
-	top: 150px;
+	top: 200px;
 }
 #tetris-keys-player2{
 	position: absolute;
 	left: 10px;
-	top: 220px;
+	top: 270px;
 }
 #tetris div.h5 { margin-bottom: 0.5em; display: block; font-weight: bold; }
 #tetris-keys td { padding-right: 1px; padding-bottom: 1px; }
@@ -247,6 +247,11 @@ body, table, input {
 */
 #tetris	.block6	{ background: #FF0000; }
 
+/* Garbage piece. Should be black.
+/*
+	-
+*/
+#tetris .block7 { background: #000000; }
 
 /*** window	***/
 
