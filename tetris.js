@@ -1074,7 +1074,7 @@ function Tetris()
 				// Do not place full lines - that's kind of pointless
 				if (random(100) < 80 && numBlocksPlaced < this.x-1) {
 					var el = document.createElement("div");
-					el.classNames = "block7";
+					el.className = "block7";
 					el.style.left = x * this.unit + "px";
 					el.style.top = (this.y-1) * this.unit + "px";
 					this.board[this.y-1][x] = el;
