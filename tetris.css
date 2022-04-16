@@ -30,6 +30,7 @@ body, table, input {
 
 #tetris-area1 {
 	/* 168,308 +2px	borders */
+	/*changes are here*/
 	background:	#fff;
 	position: absolute;
 	width: 167px;
