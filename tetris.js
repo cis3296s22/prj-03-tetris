@@ -153,7 +153,7 @@ function Tetris()
 		if (self.puzzle && !confirm('Are you sure you want to start a new game ?')) return;
 		self.reset();
 		self.stats.start(false);
-		//document.getElementById("tetris-nextpuzzle").style.display = "block";
+		document.getElementById("tetris-nextpuzzle").style.display = "block";
 		//document.getElementById("tetris-keys-player1").style.display = "none";
 		self.area = new Area(self.unit, self.areaX, self.areaY, "tetris-area1", false);
 		self.puzzle = new Puzzle(self, self.area, true, false, false);
@@ -173,7 +173,7 @@ function Tetris()
 		if (self.puzzle && !confirm('Are you sure you want to start a new game ?')) return;
 		self.reset();
 		self.stats.start(false);
-		//document.getElementById("tetris-nextpuzzle").style.display = "block";
+		document.getElementById("tetris-nextpuzzle").style.display = "block";
 		//document.getElementById("tetris-keys-player1").style.display = "none";
 		self.area = new Area(self.unit, self.areaX, self.areaY, "tetris-area1", false);
 		self.puzzle = new Puzzle(self, self.area, false, false, false);
@@ -1150,6 +1150,7 @@ function Tetris()
 		this.elements = [];
 		this.nextElements = []; // next board elements
 
+
 		// (x,y) position of the puzzle (top-left)
 		this.x = null;
 		this.y = null;
@@ -1192,6 +1193,7 @@ function Tetris()
 				[0,0,0,0]
 			]
 		];
+
 
 		/**
 		 * Reset puzzle. It does not destroy html elements in this.board.
@@ -1395,6 +1397,7 @@ function Tetris()
 			// create puzzle
 			for (var y = puzzle.length - 1; y >= 0; y--) {
 				for (var x = 0; x < puzzle[y].length; x++) {
+
 					if (puzzle[y][x]) {
 						lineFound = true;
 						var el = document.createElement("div");
@@ -1417,18 +1420,37 @@ function Tetris()
 			this.fallDownID = setTimeout(this.fallDown, this.speed);
 			// next puzzle
 			var nextPuzzle = this.puzzles[this.nextType];
-			for (var y = 0; y < nextPuzzle.length; y++) {
-				for (var x = 0; x < nextPuzzle[y].length; x++) {
-					if (nextPuzzle[y][x]) {
-						var el = document.createElement("div");
-						el.className = "block" + this.nextType;
-						el.style.left = (x * this.area.unit) + "px";
-						el.style.top = (y * this.area.unit) + "px";
-						document.getElementById("tetris-nextpuzzle").appendChild(el);
-						this.nextElements.push(el);
+
+
+			//Created for different puzzle shapes!
+			/*var i =5;
+
+			for (i in nextPuzzle){
+				let firstElement = nextPuzzle[i];
+				for (let innerArray in nextPuzzle){
+					if (nextPuzzle[innerArray][0]===firstElement[0] && i != innerArray){
+						for (let k =1; k<firstElement.length;k++){
+							firstElement[k] = firstElement[k]+nextPuzzle[innerArray][k];
+						}
 					}
 				}
-			}
+			}*/
+
+
+				for (var y = 0; y < nextPuzzle.length; y++) {
+					for (var x = 0; x < nextPuzzle[y].length; x++) {
+						if (nextPuzzle[y][x]) {
+								var el = document.createElement("div");
+								el.className = "block" + this.nextType;
+								el.style.left = (x * this.area.unit) + "px";
+								el.style.top = (y * this.area.unit) + "px";
+								document.getElementById("tetris-nextpuzzle").appendChild(el);
+								this.nextElements.push(el);
+
+						}
+					}
+				}
+
 		};
 
 		/**
