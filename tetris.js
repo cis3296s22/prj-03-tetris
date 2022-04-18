@@ -1437,6 +1437,7 @@ function Tetris()
 			}*/
 
 
+
 				for (var y = 0; y < nextPuzzle.length; y++) {
 					for (var x = 0; x < nextPuzzle[y].length; x++) {
 						if (nextPuzzle[y][x]) {
