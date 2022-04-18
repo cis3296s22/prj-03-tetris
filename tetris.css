@@ -19,7 +19,7 @@ body, table, input {
 	zoom: 190%;
 }
 
-#tetris	.left {
+#tetris	.left{
 	background:	#F5EDE3;
 	position: absolute;
 	width: 150px;
@@ -27,6 +27,9 @@ body, table, input {
 	left: 0px;
 	top: 0px;
 }
+
+
+
 .left-border { background: #E4BE95;	position: absolute;	z-index: 100; top: 0px;	left: 150px; width:	1px; height: 100%; }
 
 #tetris-area1 {
@@ -150,10 +153,11 @@ body, table, input {
 #tetris-nextpuzzle {
 	position: absolute;
 	top: 20%;
-	left: 120%;
+	left: 35%;
 	background:	#ffffff;
 	overflow: visible;
 	display: none;
+
 }
 
 #tetris-keys-player1 {

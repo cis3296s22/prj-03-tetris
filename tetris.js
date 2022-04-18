@@ -195,6 +195,7 @@ function Tetris()
 		self.stats.start(true);
 		self.area = new Area(self.unit, self.areaX, self.areaY, "tetris-area1", false);
 		self.puzzle = new Puzzle(self, self.area, true, true, false);
+		document.getElementById("tetris-nextpuzzle").style.display = "block";
 		// Start the sprint game. This is necessary here to avoid the game contiuing after a
 		// sprint game has been won.
 		self.puzzle.startSprintGame();
@@ -1395,6 +1396,7 @@ function Tetris()
 			this.y = 1;
 			this.board = this.createEmptyPuzzle(puzzle.length, puzzle[0].length);
 			// create puzzle
+
 			for (var y = puzzle.length - 1; y >= 0; y--) {
 				for (var x = 0; x < puzzle[y].length; x++) {
 
@@ -1414,8 +1416,9 @@ function Tetris()
 				}
 				if (lineFound) {
 					lines++;
-				}
-			}
+			}// end for (var y = puzzle.length - 1; y >= 0; y--)
+		}
+
 			this.running = true;
 			this.fallDownID = setTimeout(this.fallDown, this.speed);
 			// next puzzle
@@ -1436,11 +1439,9 @@ function Tetris()
 				}
 			}*/
 
-
-
-				for (var y = 0; y < nextPuzzle.length; y++) {
-					for (var x = 0; x < nextPuzzle[y].length; x++) {
-						if (nextPuzzle[y][x]) {
+					for (var y = 0; y < nextPuzzle.length; y++) {
+						for (var x = 0; x < nextPuzzle[y].length; x++) {
+							if (nextPuzzle[y][x]) {
 								var el = document.createElement("div");
 								el.className = "block" + this.nextType;
 								el.style.left = (x * this.area.unit) + "px";
@@ -1448,9 +1449,9 @@ function Tetris()
 								document.getElementById("tetris-nextpuzzle").appendChild(el);
 								this.nextElements.push(el);
 
-						}
 					}
 				}
+			}//end for (var y = 0; y < nextPuzzle.length; y++)
 
 		};
 
