@@ -167,7 +167,7 @@ body, table, input {
 #tetris-nextpuzzle {
 	position: absolute;
 	top: 20%;
-	left: 120%;
+	left: 32%;
 	background:	#ffffff;
 	overflow: visible;
 	display: none;
