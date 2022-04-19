@@ -217,6 +217,7 @@ function Tetris()
 		if (self.puzzle && !confirm("Are you sure you want to start a new game ?'")) return;
 		self.reset();
 		self.stats.start(false);
+		document.getElementById("tetris-nextpuzzle").style.display = "block";
 		self.area = new Area(self.unit, self.areaX, self.areaY, "tetris-area1", true);
 		self.puzzle = new Puzzle(self, self.area, true, false, true);
 		if (self.puzzle.mayPlace()) {
@@ -1426,6 +1427,7 @@ function Tetris()
 
 
 			//Created for different puzzle shapes!
+
 			/*var i =5;
 
 			for (i in nextPuzzle){
