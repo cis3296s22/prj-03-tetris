@@ -62,4 +62,4 @@ Collaborators:
 - Shiv S Patel
 - Giray Turker
 
-Links: https://github.com/cis3296s22/prj-03-tetris
+Base release: https://github.com/cis3296s22/prj-03-tetris
