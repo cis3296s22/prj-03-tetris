@@ -13,7 +13,7 @@ body, table, input {
 #tetris	{
 	position: relative;
 	width: 500px;
-	height:	450px;
+	height:	500px;
 	background:	#fff;
 	border:	#BE9E7C	1px	solid;
 }
@@ -26,6 +26,29 @@ body, table, input {
 	left: 0px;
 	top: 0px;
 }
+
+#right {
+	background:	#F5EDE3;
+	position: absolute;
+	width: 150px;
+	height:	38.55%;
+	right: 878px;
+	top: 398px;
+	border:	#BE9E7C	1px	solid;
+	display: none;
+}
+
+#stats2{
+	position: absolute;
+	left: 10px;
+	bottom:	5px;
+}
+
+#tetris	.left .menu	{
+	margin-top:	1em;
+
+}
+
 .left-border { background: #E4BE95;	position: absolute;	z-index: 100; top: 0px;	left: 150px; width:	1px; height: 100%; }
 
 #tetris-area1 {
@@ -157,12 +180,12 @@ body, table, input {
 #tetris-keys-player1 {
 	position: absolute;
 	left: 10px;
-	top: 150px;
+	top: 200px;
 }
 #tetris-keys-player2{
 	position: absolute;
 	left: 10px;
-	top: 220px;
+	top: 270px;
 }
 #tetris div.h5 { margin-bottom: 0.5em; display: block; font-weight: bold; }
 #tetris-keys td { padding-right: 1px; padding-bottom: 1px; }
@@ -247,6 +270,11 @@ body, table, input {
 */
 #tetris	.block6	{ background: #FF0000; }
 
+/* Garbage piece. Should be black.
+/*
+	-
+*/
+#tetris .block7 { background: #000000; }
 
 /*** window	***/
 
