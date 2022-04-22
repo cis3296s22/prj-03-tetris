@@ -26,19 +26,7 @@ In this project, Javascript, HTML and CSS coding languages to create new release
 - Statistics: This section shows player('s) various data about the game.
 
 # How to run
-Provide here instructions on how to use your application.   
-- Download the latest binary from the Release section on the right on GitHub.  
-- On the command line uncompress using
-```
-tar -xzf  
-```
-- On the command line run with
-```
-./hello
-```
-- You will see Hello World! on your terminal. 
-
-For quick play: Download the latest release from repository, Uncompress the files and open tetris.html file.
+ -Download the latest release from repository, Uncompress the files and open tetris.html file.
 
 # How to Use the Project
 
