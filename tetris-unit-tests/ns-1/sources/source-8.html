@@ -1,0 +1,319 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > PayStationMain</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">edu.temple.cis.paystation</a>
+</div>
+
+<h1>Coverage Summary for Class: PayStationMain (edu.temple.cis.paystation)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PayStationMain</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/96)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package edu.temple.cis.paystation;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import java.util.*;
+<i class="no-highlight">4</i>&nbsp;
+<b class="nc"><i class="no-highlight">5</i>&nbsp;public class PayStationMain {</b>
+<i class="no-highlight">6</i>&nbsp;
+<i class="no-highlight">7</i>&nbsp;    public static void main(String args[]) {
+<i class="no-highlight">8</i>&nbsp;
+<i class="no-highlight">9</i>&nbsp;        // Create a paystation object
+<b class="nc"><i class="no-highlight">10</i>&nbsp;        PayStation ps = new PayStationImpl();</b>
+<i class="no-highlight">11</i>&nbsp;
+<i class="no-highlight">12</i>&nbsp;        // Create a boolean which keeps track of whether the simulation should continue
+<i class="no-highlight">13</i>&nbsp;        // to run. It defaults to true and is only set to false when the user enters
+<i class="no-highlight">14</i>&nbsp;        // command 0.
+<b class="nc"><i class="no-highlight">15</i>&nbsp;        boolean runningSim = true;</b>
+<i class="no-highlight">16</i>&nbsp;
+<i class="no-highlight">17</i>&nbsp;        // Various variables required for proper operation
+<i class="no-highlight">18</i>&nbsp;        int userSelection;
+<i class="no-highlight">19</i>&nbsp;        int rateSelection;
+<i class="no-highlight">20</i>&nbsp;        int enteredCoin;
+<i class="no-highlight">21</i>&nbsp;        Map&lt;Integer, Integer&gt; returnedCoins;
+<i class="no-highlight">22</i>&nbsp;        int totalCoinsReturned;
+<b class="nc"><i class="no-highlight">23</i>&nbsp;        Scanner sc = new Scanner(System.in);</b>
+<i class="no-highlight">24</i>&nbsp;        RateStrategy rateStrategy;
+<i class="no-highlight">25</i>&nbsp;        int selectedDay;
+<i class="no-highlight">26</i>&nbsp;        int selectedHour;
+<i class="no-highlight">27</i>&nbsp;        int selectedMinute;
+<i class="no-highlight">28</i>&nbsp;
+<i class="no-highlight">29</i>&nbsp;        // Enter the main loop. The user can select what to do from there:
+<i class="no-highlight">30</i>&nbsp;        // 1: Deposit money.
+<i class="no-highlight">31</i>&nbsp;        // 2: Display the current time bought.
+<i class="no-highlight">32</i>&nbsp;        // 3: Buy a ticket, printing a receipt with the parking time.
+<i class="no-highlight">33</i>&nbsp;        // 4: Cancel the current transaction, printing the number and amount of returned coins.
+<i class="no-highlight">34</i>&nbsp;        // 5: Empty the paystation (admin only)
+<i class="no-highlight">35</i>&nbsp;        // 6: Change the rate strategy (admin only)
+<i class="no-highlight">36</i>&nbsp;        // 0: Quit the loop
+<b class="nc"><i class="no-highlight">37</i>&nbsp;        while(runningSim) {</b>
+<b class="nc"><i class="no-highlight">38</i>&nbsp;            System.out.print(&quot;\nEnter your choice:\n&quot; +</b>
+<i class="no-highlight">39</i>&nbsp;                             &quot;(1) Deposit Coins\n&quot; +
+<i class="no-highlight">40</i>&nbsp;                             &quot;(2) Display Bought Time\n&quot; +
+<i class="no-highlight">41</i>&nbsp;                             &quot;(3) Buy Ticket\n&quot; +
+<i class="no-highlight">42</i>&nbsp;                             &quot;(4) Cancel Transaction\n&quot; +
+<i class="no-highlight">43</i>&nbsp;                             &quot;Admin Only!\n&quot; +
+<i class="no-highlight">44</i>&nbsp;                             &quot;(5) Empty PayStation\n&quot; +
+<i class="no-highlight">45</i>&nbsp;                             &quot;(6) Change Rate Strategy\n&quot; +
+<i class="no-highlight">46</i>&nbsp;                             &quot;(0) Quit PayStation\n&quot;);
+<b class="nc"><i class="no-highlight">47</i>&nbsp;            userSelection = sc.nextInt();</b>
+<b class="nc"><i class="no-highlight">48</i>&nbsp;            switch (userSelection) {</b>
+<i class="no-highlight">49</i>&nbsp;                case 0:
+<i class="no-highlight">50</i>&nbsp;                    // Quit the simulation by setting this to false, breaking out of the loop.
+<b class="nc"><i class="no-highlight">51</i>&nbsp;                    runningSim = false;</b>
+<b class="nc"><i class="no-highlight">52</i>&nbsp;                    System.out.println(&quot;Thanks for using PayStation!&quot;);</b>
+<b class="nc"><i class="no-highlight">53</i>&nbsp;                    break;</b>
+<i class="no-highlight">54</i>&nbsp;
+<i class="no-highlight">55</i>&nbsp;                case 1:
+<b class="nc"><i class="no-highlight">56</i>&nbsp;                    System.out.println(&quot;Enter the value of the coin you wish to enter:&quot;);</b>
+<b class="nc"><i class="no-highlight">57</i>&nbsp;                    enteredCoin = sc.nextInt();</b>
+<i class="no-highlight">58</i>&nbsp;                    // Now that we have the coin attempt to deposit it into the paystation.
+<i class="no-highlight">59</i>&nbsp;                    try {
+<b class="nc"><i class="no-highlight">60</i>&nbsp;                        ps.addPayment(enteredCoin);</b>
+<i class="no-highlight">61</i>&nbsp;                    }
+<i class="no-highlight">62</i>&nbsp;                    // Notify the user that the coin they entered was invalid.
+<b class="nc"><i class="no-highlight">63</i>&nbsp;                    catch (Exception IllegalCoinException) {</b>
+<b class="nc"><i class="no-highlight">64</i>&nbsp;                        System.out.println(&quot;**********************************************************&quot;);</b>
+<b class="nc"><i class="no-highlight">65</i>&nbsp;                        System.out.println(&quot;********           Invalid coin entered!        **********&quot;);</b>
+<b class="nc"><i class="no-highlight">66</i>&nbsp;                        System.out.println(&quot;**********************************************************&quot;);</b>
+<b class="nc"><i class="no-highlight">67</i>&nbsp;                    }</b>
+<b class="nc"><i class="no-highlight">68</i>&nbsp;                    break;</b>
+<i class="no-highlight">69</i>&nbsp;
+<i class="no-highlight">70</i>&nbsp;                case 2:
+<i class="no-highlight">71</i>&nbsp;                    // Display the current purchased time on the display.
+<b class="nc"><i class="no-highlight">72</i>&nbsp;                    System.out.println(&quot;**********************************************************&quot;);</b>
+<b class="nc"><i class="no-highlight">73</i>&nbsp;                    System.out.println(String.format(&quot;You have purchased %d minutes so far.&quot;, ps.readDisplay()));</b>
+<b class="nc"><i class="no-highlight">74</i>&nbsp;                    System.out.println(&quot;**********************************************************&quot;);</b>
+<b class="nc"><i class="no-highlight">75</i>&nbsp;                    break;</b>
+<i class="no-highlight">76</i>&nbsp;
+<i class="no-highlight">77</i>&nbsp;                case 3:
+<i class="no-highlight">78</i>&nbsp;                    // Purchase a parking ticket, &quot;printing&quot; a receipt with the parking time.
+<b class="nc"><i class="no-highlight">79</i>&nbsp;                    Receipt printedReceipt = ps.buy();</b>
+<b class="nc"><i class="no-highlight">80</i>&nbsp;                    System.out.println(&quot;**********************************************************&quot;);</b>
+<b class="nc"><i class="no-highlight">81</i>&nbsp;                    System.out.println(String.format(&quot;*** RECEIPT: PURCHASED %d MINUTES&quot;, printedReceipt.value()));</b>
+<b class="nc"><i class="no-highlight">82</i>&nbsp;                    System.out.println(&quot;**********************************************************&quot;);</b>
+<b class="nc"><i class="no-highlight">83</i>&nbsp;                    break;</b>
+<i class="no-highlight">84</i>&nbsp;
+<i class="no-highlight">85</i>&nbsp;                case 4:
+<i class="no-highlight">86</i>&nbsp;                    // Cancel the transaction, printing the returned coins&#39; values and number of each coin type.
+<b class="nc"><i class="no-highlight">87</i>&nbsp;                    returnedCoins = ps.cancel();</b>
+<b class="nc"><i class="no-highlight">88</i>&nbsp;                    System.out.println(&quot;**********************************************************&quot;);</b>
+<b class="nc"><i class="no-highlight">89</i>&nbsp;                    System.out.println(&quot;Transaction Cancelled!&quot;);</b>
+<i class="no-highlight">90</i>&nbsp;                    // Only show coins if they have been returned
+<b class="nc"><i class="no-highlight">91</i>&nbsp;                    if (returnedCoins.get(5) != null) {</b>
+<b class="nc"><i class="no-highlight">92</i>&nbsp;                        System.out.println(String.format(&quot;Returned %d nickel(s).&quot;, returnedCoins.get(5)));</b>
+<i class="no-highlight">93</i>&nbsp;                    }
+<b class="nc"><i class="no-highlight">94</i>&nbsp;                    if (returnedCoins.get(10) != null) {</b>
+<b class="nc"><i class="no-highlight">95</i>&nbsp;                        System.out.println(String.format(&quot;Returned %d dime(s).&quot;, returnedCoins.get(10)));</b>
+<i class="no-highlight">96</i>&nbsp;                    }
+<b class="nc"><i class="no-highlight">97</i>&nbsp;                    if (returnedCoins.get(25) != null) {</b>
+<b class="nc"><i class="no-highlight">98</i>&nbsp;                        System.out.println(String.format(&quot;Returned %d quarter(s).&quot;, returnedCoins.get(25)));</b>
+<i class="no-highlight">99</i>&nbsp;                    }
+<b class="nc"><i class="no-highlight">100</i>&nbsp;                    System.out.println(&quot;**********************************************************&quot;);</b>
+<b class="nc"><i class="no-highlight">101</i>&nbsp;                    break;</b>
+<i class="no-highlight">102</i>&nbsp;
+<i class="no-highlight">103</i>&nbsp;                case 5:
+<i class="no-highlight">104</i>&nbsp;                    // Empty the paystation, displaying the amount collected.
+<b class="nc"><i class="no-highlight">105</i>&nbsp;                    totalCoinsReturned = ps.empty();</b>
+<b class="nc"><i class="no-highlight">106</i>&nbsp;                    System.out.println(&quot;**********************************************************&quot;);</b>
+<b class="nc"><i class="no-highlight">107</i>&nbsp;                    System.out.println(String.format(&quot;Paystation has been emptied! Collected %d cents&quot;, totalCoinsReturned));</b>
+<b class="nc"><i class="no-highlight">108</i>&nbsp;                    System.out.println(&quot;**********************************************************&quot;);</b>
+<b class="nc"><i class="no-highlight">109</i>&nbsp;                    break;</b>
+<i class="no-highlight">110</i>&nbsp;
+<i class="no-highlight">111</i>&nbsp;                case 6:
+<i class="no-highlight">112</i>&nbsp;                    // Switch to the selected rate strategy.
+<b class="nc"><i class="no-highlight">113</i>&nbsp;                    System.out.print(&quot;\nSelect a rate strategy:\n&quot; +</b>
+<i class="no-highlight">114</i>&nbsp;                            &quot;(1) Alphatown (Linear1)\n&quot; +
+<i class="no-highlight">115</i>&nbsp;                            &quot;(2) Betatown (Progressive)\n&quot; +
+<i class="no-highlight">116</i>&nbsp;                            &quot;(3) Gammatown (Alternating)\n&quot; +
+<i class="no-highlight">117</i>&nbsp;                            &quot;(4) Deltatown (Linear2)\n&quot; +
+<i class="no-highlight">118</i>&nbsp;                            &quot;(5) Omegatown (Alternating)\n&quot;);
+<b class="nc"><i class="no-highlight">119</i>&nbsp;                     rateSelection = sc.nextInt();</b>
+<b class="nc"><i class="no-highlight">120</i>&nbsp;                     switch (rateSelection) {</b>
+<i class="no-highlight">121</i>&nbsp;
+<i class="no-highlight">122</i>&nbsp;                         case 1:
+<b class="nc"><i class="no-highlight">123</i>&nbsp;                             rateStrategy = new AlphaRate();</b>
+<b class="nc"><i class="no-highlight">124</i>&nbsp;                             ps.setRateStrategy(rateStrategy);</b>
+<b class="nc"><i class="no-highlight">125</i>&nbsp;                             break;</b>
+<i class="no-highlight">126</i>&nbsp;
+<i class="no-highlight">127</i>&nbsp;                         case 2:
+<b class="nc"><i class="no-highlight">128</i>&nbsp;                             rateStrategy = new BetaRate();</b>
+<b class="nc"><i class="no-highlight">129</i>&nbsp;                             ps.setRateStrategy(rateStrategy);</b>
+<i class="no-highlight">130</i>&nbsp;
+<i class="no-highlight">131</i>&nbsp;                         case 3:
+<i class="no-highlight">132</i>&nbsp;                             // As this is an alternating strategy, we need to obtain the date from the
+<i class="no-highlight">133</i>&nbsp;                             // user and pass those parameters in to the strategy, so it can calculate the correct
+<i class="no-highlight">134</i>&nbsp;                             // amount. This is also required to handle weekend rollover.
+<b class="nc"><i class="no-highlight">135</i>&nbsp;                             rateStrategy = new GammaRate();</b>
+<b class="nc"><i class="no-highlight">136</i>&nbsp;                             System.out.println(&quot;Enter the day of week (1 = Sunday, 2 = Monday, ..., 7 = Saturday):&quot;);</b>
+<b class="nc"><i class="no-highlight">137</i>&nbsp;                             selectedDay = sc.nextInt();</b>
+<i class="no-highlight">138</i>&nbsp;                             // Make sure the user enters a valid day. Pass the day in if it is
+<b class="nc"><i class="no-highlight">139</i>&nbsp;                             if (selectedDay &lt; 1 || selectedDay &gt; 7) {</b>
+<b class="nc"><i class="no-highlight">140</i>&nbsp;                                 throw new ArithmeticException(&quot;Day must be between 1 and 7!&quot;);</b>
+<i class="no-highlight">141</i>&nbsp;                             }
+<b class="nc"><i class="no-highlight">142</i>&nbsp;                             rateStrategy.setDayOfWeek(selectedDay);</b>
+<i class="no-highlight">143</i>&nbsp;
+<b class="nc"><i class="no-highlight">144</i>&nbsp;                             System.out.println(&quot;Enter the hour (0-23):&quot;);</b>
+<b class="nc"><i class="no-highlight">145</i>&nbsp;                             selectedHour = sc.nextInt();</b>
+<i class="no-highlight">146</i>&nbsp;                             // Make sure the user enters a valid hour. Pass the hour in if it is
+<b class="nc"><i class="no-highlight">147</i>&nbsp;                             if (selectedHour &lt; 0 || selectedHour &gt; 23) {</b>
+<b class="nc"><i class="no-highlight">148</i>&nbsp;                                 throw new ArithmeticException(&quot;Hour must be between 0 and 23!&quot;);</b>
+<i class="no-highlight">149</i>&nbsp;                             }
+<b class="nc"><i class="no-highlight">150</i>&nbsp;                             rateStrategy.setHour(selectedHour);</b>
+<i class="no-highlight">151</i>&nbsp;
+<b class="nc"><i class="no-highlight">152</i>&nbsp;                             System.out.println(&quot;Enter the minute (0-59):&quot;);</b>
+<b class="nc"><i class="no-highlight">153</i>&nbsp;                             selectedMinute = sc.nextInt();</b>
+<i class="no-highlight">154</i>&nbsp;                             // Make sure the user enters a valid minute. Pass the minute in if it is
+<b class="nc"><i class="no-highlight">155</i>&nbsp;                             if (selectedMinute &lt; 0 || selectedMinute &gt; 59) {</b>
+<b class="nc"><i class="no-highlight">156</i>&nbsp;                                 throw new ArithmeticException(&quot;Minute must be between 0 and 59!&quot;);</b>
+<i class="no-highlight">157</i>&nbsp;                             }
+<b class="nc"><i class="no-highlight">158</i>&nbsp;                             rateStrategy.setMinute(selectedMinute);</b>
+<i class="no-highlight">159</i>&nbsp;
+<i class="no-highlight">160</i>&nbsp;                             // Now that the rate strategy has the user-entered time, it can be set.
+<b class="nc"><i class="no-highlight">161</i>&nbsp;                             ps.setRateStrategy(rateStrategy);</b>
+<b class="nc"><i class="no-highlight">162</i>&nbsp;                             break;</b>
+<i class="no-highlight">163</i>&nbsp;
+<i class="no-highlight">164</i>&nbsp;                         case 4:
+<b class="nc"><i class="no-highlight">165</i>&nbsp;                             rateStrategy = new DeltaRate();</b>
+<b class="nc"><i class="no-highlight">166</i>&nbsp;                             ps.setRateStrategy(rateStrategy);</b>
+<b class="nc"><i class="no-highlight">167</i>&nbsp;                             break;</b>
+<i class="no-highlight">168</i>&nbsp;
+<i class="no-highlight">169</i>&nbsp;                         case 5:
+<i class="no-highlight">170</i>&nbsp;                             // This is also an alternating strategy so continue as we did in case 3.
+<b class="nc"><i class="no-highlight">171</i>&nbsp;                             rateStrategy = new OmegaRate();</b>
+<b class="nc"><i class="no-highlight">172</i>&nbsp;                             System.out.println(&quot;Enter the day of week (1 = Sunday, 2 = Monday, ..., 7 = Saturday):&quot;);</b>
+<b class="nc"><i class="no-highlight">173</i>&nbsp;                             selectedDay = sc.nextInt();</b>
+<i class="no-highlight">174</i>&nbsp;                             // Make sure the user enters a valid day. Pass the day in if it is
+<b class="nc"><i class="no-highlight">175</i>&nbsp;                             if (selectedDay &lt; 1 || selectedDay &gt; 7) {</b>
+<b class="nc"><i class="no-highlight">176</i>&nbsp;                                 throw new ArithmeticException(&quot;Day must be between 1 and 7!&quot;);</b>
+<i class="no-highlight">177</i>&nbsp;                             }
+<b class="nc"><i class="no-highlight">178</i>&nbsp;                             rateStrategy.setDayOfWeek(selectedDay);</b>
+<i class="no-highlight">179</i>&nbsp;
+<b class="nc"><i class="no-highlight">180</i>&nbsp;                             System.out.println(&quot;Enter the hour (0-23):&quot;);</b>
+<b class="nc"><i class="no-highlight">181</i>&nbsp;                             selectedHour = sc.nextInt();</b>
+<i class="no-highlight">182</i>&nbsp;                             // Make sure the user enters a valid hour. Pass the hour in if it is
+<b class="nc"><i class="no-highlight">183</i>&nbsp;                             if (selectedHour &lt; 0 || selectedHour &gt; 23) {</b>
+<b class="nc"><i class="no-highlight">184</i>&nbsp;                                 throw new ArithmeticException(&quot;Hour must be between 0 and 23!&quot;);</b>
+<i class="no-highlight">185</i>&nbsp;                             }
+<b class="nc"><i class="no-highlight">186</i>&nbsp;                             rateStrategy.setHour(selectedHour);</b>
+<i class="no-highlight">187</i>&nbsp;
+<b class="nc"><i class="no-highlight">188</i>&nbsp;                             System.out.println(&quot;Enter the minute (0-59):&quot;);</b>
+<b class="nc"><i class="no-highlight">189</i>&nbsp;                             selectedMinute = sc.nextInt();</b>
+<i class="no-highlight">190</i>&nbsp;                             // Make sure the user enters a valid minute. Pass the minute in if it is
+<b class="nc"><i class="no-highlight">191</i>&nbsp;                             if (selectedMinute &lt; 0 || selectedMinute &gt; 59) {</b>
+<b class="nc"><i class="no-highlight">192</i>&nbsp;                                 throw new ArithmeticException(&quot;Minute must be between 0 and 59!&quot;);</b>
+<i class="no-highlight">193</i>&nbsp;                             }
+<b class="nc"><i class="no-highlight">194</i>&nbsp;                             rateStrategy.setMinute(selectedMinute);</b>
+<i class="no-highlight">195</i>&nbsp;
+<i class="no-highlight">196</i>&nbsp;                             // Now that the rate strategy has the user-entered time, it can be set.
+<b class="nc"><i class="no-highlight">197</i>&nbsp;                             ps.setRateStrategy(rateStrategy);</b>
+<b class="nc"><i class="no-highlight">198</i>&nbsp;                             break;</b>
+<i class="no-highlight">199</i>&nbsp;
+<i class="no-highlight">200</i>&nbsp;                         default:
+<b class="nc"><i class="no-highlight">201</i>&nbsp;                             System.out.println(&quot;Invalid entry!&quot;);</b>
+<b class="nc"><i class="no-highlight">202</i>&nbsp;                             break;</b>
+<i class="no-highlight">203</i>&nbsp;                     }
+<i class="no-highlight">204</i>&nbsp;                     break;
+<i class="no-highlight">205</i>&nbsp;
+<i class="no-highlight">206</i>&nbsp;                default:
+<b class="nc"><i class="no-highlight">207</i>&nbsp;                    System.out.println(&quot;Invalid entry!&quot;);</b>
+<b class="nc"><i class="no-highlight">208</i>&nbsp;                    break;</b>
+<i class="no-highlight">209</i>&nbsp;            }
+<i class="no-highlight">210</i>&nbsp;        }
+<i class="no-highlight">211</i>&nbsp;
+<i class="no-highlight">212</i>&nbsp;    }
+<i class="no-highlight">213</i>&nbsp;
+<i class="no-highlight">214</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-03-08 20:13</div>
+</div>
+</body>
+</html>

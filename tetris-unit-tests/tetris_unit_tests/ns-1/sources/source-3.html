@@ -1,0 +1,107 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > Tetris</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">edu.temple.cis.tetris</a>
+</div>
+
+<h1>Coverage Summary for Class: Tetris (edu.temple.cis.tetris)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+</tr>
+<tr>
+  <td class="name">Tetris</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package edu.temple.cis.tetris;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;public interface Tetris {
+<i class="no-highlight">4</i>&nbsp;
+<i class="no-highlight">5</i>&nbsp;    void initialize();
+<i class="no-highlight">6</i>&nbsp;    void addTime();
+<i class="no-highlight">7</i>&nbsp;    void addPuzzle();
+<i class="no-highlight">8</i>&nbsp;    void addLines(int linesToAdd);
+<i class="no-highlight">9</i>&nbsp;    boolean shouldAddGarbageLine();
+<i class="no-highlight">10</i>&nbsp;    boolean shouldEndSprintGame();
+<i class="no-highlight">11</i>&nbsp;    void setSprint();
+<i class="no-highlight">12</i>&nbsp;    void setNormal();
+<i class="no-highlight">13</i>&nbsp;    void setGarbage();
+<i class="no-highlight">14</i>&nbsp;    int getScore();
+<i class="no-highlight">15</i>&nbsp;    int getLevel();
+<i class="no-highlight">16</i>&nbsp;    int getLines();
+<i class="no-highlight">17</i>&nbsp;    int getTime();
+<i class="no-highlight">18</i>&nbsp;    int getApm();
+<i class="no-highlight">19</i>&nbsp;    int getPuzzles();
+<i class="no-highlight">20</i>&nbsp;    int getActions();
+<i class="no-highlight">21</i>&nbsp;    int getLeftMovements();
+<i class="no-highlight">22</i>&nbsp;    int getRightMovements();
+<i class="no-highlight">23</i>&nbsp;    int getRotations();
+<i class="no-highlight">24</i>&nbsp;    int getSpeed();
+<i class="no-highlight">25</i>&nbsp;    void up();
+<i class="no-highlight">26</i>&nbsp;    void up2();
+<i class="no-highlight">27</i>&nbsp;    void down();
+<i class="no-highlight">28</i>&nbsp;    void down2();
+<i class="no-highlight">29</i>&nbsp;    void left();
+<i class="no-highlight">30</i>&nbsp;    void left2();
+<i class="no-highlight">31</i>&nbsp;    void right();
+<i class="no-highlight">32</i>&nbsp;    void right2();
+<i class="no-highlight">33</i>&nbsp;    void gameOver();
+<i class="no-highlight">34</i>&nbsp;    int[] getNormalHighScores();
+<i class="no-highlight">35</i>&nbsp;    int[] getSprintHighScores();
+<i class="no-highlight">36</i>&nbsp;    int[] getGarbageHighScores();
+<i class="no-highlight">37</i>&nbsp;
+<i class="no-highlight">38</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-04-22 11:24</div>
+</div>
+</body>
+</html>

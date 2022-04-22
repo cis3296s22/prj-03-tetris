@@ -1,0 +1,189 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > HighScoreImpl</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">edu.temple.cis.tetris</a>
+</div>
+
+<h1>Coverage Summary for Class: HighScoreImpl (edu.temple.cis.tetris)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">HighScoreImpl</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    80%
+  </span>
+  <span class="absValue">
+    (4/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    90.6%
+  </span>
+  <span class="absValue">
+    (29/32)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package edu.temple.cis.tetris;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;public class HighScoreImpl {
+<i class="no-highlight">4</i>&nbsp;
+<b class="fc"><i class="no-highlight">5</i>&nbsp;    private int[] scores = new int[5];</b>
+<i class="no-highlight">6</i>&nbsp;    private int maxScores;
+<i class="no-highlight">7</i>&nbsp;    private int scoresEntered;
+<i class="no-highlight">8</i>&nbsp;
+<b class="fc"><i class="no-highlight">9</i>&nbsp;    public HighScoreImpl() {</b>
+<b class="fc"><i class="no-highlight">10</i>&nbsp;        for (int i = 0; i &lt; 4; i++) {</b>
+<b class="fc"><i class="no-highlight">11</i>&nbsp;            scores[i] = 0;</b>
+<i class="no-highlight">12</i>&nbsp;        }
+<b class="fc"><i class="no-highlight">13</i>&nbsp;        maxScores = 5;</b>
+<b class="fc"><i class="no-highlight">14</i>&nbsp;        scoresEntered = 0;</b>
+<i class="no-highlight">15</i>&nbsp;    }
+<i class="no-highlight">16</i>&nbsp;
+<i class="no-highlight">17</i>&nbsp;    public boolean canAdd(int score, boolean isSprint) {
+<i class="no-highlight">18</i>&nbsp;        // If fewer than 5 scores have been entered, the current score can
+<i class="no-highlight">19</i>&nbsp;        // be entered.
+<b class="fc"><i class="no-highlight">20</i>&nbsp;        if (scoresEntered &lt; maxScores) {</b>
+<b class="fc"><i class="no-highlight">21</i>&nbsp;            return true;</b>
+<i class="no-highlight">22</i>&nbsp;        }
+<i class="no-highlight">23</i>&nbsp;        // Otherwise, the score can be entered if it is lower than one of the lowest
+<i class="no-highlight">24</i>&nbsp;        // scores in Sprint mode, or higher than one of the highest 5 scores in any
+<i class="no-highlight">25</i>&nbsp;        // other mode.
+<b class="fc"><i class="no-highlight">26</i>&nbsp;        for (int i = 4; i &gt;= 0; --i) {</b>
+<b class="fc"><i class="no-highlight">27</i>&nbsp;            if (!isSprint) {</b>
+<b class="fc"><i class="no-highlight">28</i>&nbsp;                if (scores[i] &lt; score) {</b>
+<b class="fc"><i class="no-highlight">29</i>&nbsp;                    return true;</b>
+<i class="no-highlight">30</i>&nbsp;                }
+<i class="no-highlight">31</i>&nbsp;            } else {
+<b class="fc"><i class="no-highlight">32</i>&nbsp;                if (scores[i] &gt; score) {</b>
+<b class="fc"><i class="no-highlight">33</i>&nbsp;                    return true;</b>
+<i class="no-highlight">34</i>&nbsp;                }
+<i class="no-highlight">35</i>&nbsp;            }
+<i class="no-highlight">36</i>&nbsp;        }
+<b class="nc"><i class="no-highlight">37</i>&nbsp;        return false;</b>
+<i class="no-highlight">38</i>&nbsp;    }
+<i class="no-highlight">39</i>&nbsp;
+<i class="no-highlight">40</i>&nbsp;    public void add(int score, boolean isSprint) {
+<b class="fc"><i class="no-highlight">41</i>&nbsp;        for (int i = 0; i &lt;= 4; i++) {</b>
+<b class="fc"><i class="no-highlight">42</i>&nbsp;            if (!isSprint) {</b>
+<i class="no-highlight">43</i>&nbsp;                // If the score in position i is lower than the submitted score, or the score is zeor...
+<i class="no-highlight">44</i>&nbsp;                // If the score is 0 it is identical to an empty position. The player should be able to enter a score here
+<b class="fc"><i class="no-highlight">45</i>&nbsp;                if (scores[i] &lt; score || scores[i] == 0) {</b>
+<i class="no-highlight">46</i>&nbsp;                    // Move all the scores in positions i through 4 down one position
+<b class="fc"><i class="no-highlight">47</i>&nbsp;                    for (int j = 3; j &gt;= i; j--) {</b>
+<b class="fc"><i class="no-highlight">48</i>&nbsp;                        scores[j + 1] = scores[j];</b>
+<i class="no-highlight">49</i>&nbsp;                    }
+<i class="no-highlight">50</i>&nbsp;                    // Add the new score
+<b class="fc"><i class="no-highlight">51</i>&nbsp;                    scores[i] = score;</b>
+<i class="no-highlight">52</i>&nbsp;                    // Increment the number of scores entered
+<b class="fc"><i class="no-highlight">53</i>&nbsp;                    scoresEntered = scoresEntered + 1;</b>
+<b class="fc"><i class="no-highlight">54</i>&nbsp;                    break;</b>
+<i class="no-highlight">55</i>&nbsp;                }
+<i class="no-highlight">56</i>&nbsp;            } else {
+<i class="no-highlight">57</i>&nbsp;                // If the score in position i is higher than the submitted score, or the score is zero...
+<i class="no-highlight">58</i>&nbsp;                // If the score is 0 it is identical to an empty position. The player should be able to enter a score here
+<b class="fc"><i class="no-highlight">59</i>&nbsp;                if (scores[i] &gt; score || scores[i] == 0) {</b>
+<i class="no-highlight">60</i>&nbsp;                    // Move all the scores in positions i through 4 down one position
+<b class="fc"><i class="no-highlight">61</i>&nbsp;                    for (int j = 3; j &gt;= i; j--) {</b>
+<b class="fc"><i class="no-highlight">62</i>&nbsp;                        scores[j + 1] = scores[j];</b>
+<i class="no-highlight">63</i>&nbsp;                    }
+<i class="no-highlight">64</i>&nbsp;                    // Add the new score
+<b class="fc"><i class="no-highlight">65</i>&nbsp;                    scores[i] = score;</b>
+<i class="no-highlight">66</i>&nbsp;                    // Increment the number of scores entered
+<b class="fc"><i class="no-highlight">67</i>&nbsp;                    scoresEntered = scoresEntered + 1;</b>
+<b class="fc"><i class="no-highlight">68</i>&nbsp;                    break;</b>
+<i class="no-highlight">69</i>&nbsp;                }
+<i class="no-highlight">70</i>&nbsp;            }
+<i class="no-highlight">71</i>&nbsp;        }
+<i class="no-highlight">72</i>&nbsp;    }
+<i class="no-highlight">73</i>&nbsp;
+<i class="no-highlight">74</i>&nbsp;    public int[] getScores() {
+<b class="fc"><i class="no-highlight">75</i>&nbsp;        return scores;</b>
+<i class="no-highlight">76</i>&nbsp;    }
+<i class="no-highlight">77</i>&nbsp;
+<i class="no-highlight">78</i>&nbsp;    public void clearScores() {
+<b class="nc"><i class="no-highlight">79</i>&nbsp;        for (int i = 0; i &lt; 4; i++) {</b>
+<b class="nc"><i class="no-highlight">80</i>&nbsp;            scores[i] = 0;</b>
+<i class="no-highlight">81</i>&nbsp;        }
+<i class="no-highlight">82</i>&nbsp;    }
+<i class="no-highlight">83</i>&nbsp;
+<i class="no-highlight">84</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-04-22 11:24</div>
+</div>
+</body>
+</html>
