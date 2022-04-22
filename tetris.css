@@ -30,19 +30,28 @@ body, table, input {
 
 #right {
 	background:	#F5EDE3;
-	position: absolute;
-	width: 150px;
-	height:	38.55%;
-	right: 878px;
-	top: 398px;
+	position: relative;
+	width: 250px;
+	left: 1760px;
 	border:	#BE9E7C	1px	solid;
 	display: none;
+}
+
+#right table{
+	font-size: 23px;
+	line-height: 1.2em;
+	font-family: tahoma;
+	color: #826C55;
 }
 
 #stats2{
 	position: absolute;
 	left: 10px;
 	bottom:	5px;
+	font-size: 25px;
+	line-height: 1.2em;
+	font-family: tahoma;
+	color: #826C55;
 }
 
 #tetris	.left .menu	{
@@ -335,6 +344,7 @@ body, table, input {
 }
 #tetris	.window	.content {
 	margin:	10px;
+	line-height: 12px;
 }
 #tetris	.window	.content table {
 }
