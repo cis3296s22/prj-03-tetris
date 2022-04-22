@@ -41,7 +41,7 @@ Follow this [project board](http://trello.com/b/sWlulrWJ/tetris) to be informed 
 - What file and target to compile and run. 
 - What is expected to happen when the app start. 
 
-#Credits
+# Credits
 
 Collaborators:
 - Thomas M Herner
