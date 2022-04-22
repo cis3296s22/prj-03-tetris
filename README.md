@@ -28,18 +28,10 @@ In this project, Javascript, HTML and CSS coding languages are used to create ne
 
 # How to Edit the Project
 
-- The functionality of this program lies in the tetris.js, tetris.html, and tetris.css files. Feel free to modify any of these to your liking. 
+- The functionality of this program lies in the tetris.js, tetris.html, and tetris.css files. Feel free to modify any of these to your liking with Intellij or VSCode. 
 
 # How to contribute
 Follow this [project board](https://trello.com/b/sWluIrWJ/tetris) to be informed of the project's status.
-
-### How to build
-- Use this github repository: ... 
-- Specify what branch to use for a more stable release or for cutting edge development.  
-- Use InteliJ 11
-- Specify additional library to download if needed 
-- What file and target to compile and run. 
-- What is expected to happen when the app start. 
 
 # Credits
 
@@ -48,4 +40,4 @@ Collaborators:
 - Shiv S Patel
 - Giray Turker
 
-Base release: https://github.com/cis3296s22/prj-03-tetris
+Original Repository: https://github.com/cztomczak/jstetris
