@@ -1,0 +1,144 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > PayStation</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">edu.temple.cis.paystation</a>
+</div>
+
+<h1>Coverage Summary for Class: PayStation (edu.temple.cis.paystation)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+</tr>
+<tr>
+  <td class="name">PayStation</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;/**
+<i class="no-highlight">2</i>&nbsp; * The business logic of a Parking Pay Station.
+<i class="no-highlight">3</i>&nbsp; *
+<i class="no-highlight">4</i>&nbsp; * Responsibilities:
+<i class="no-highlight">5</i>&nbsp; *
+<i class="no-highlight">6</i>&nbsp; * 1) Accept payment; 
+<i class="no-highlight">7</i>&nbsp; * 2) Calculate parking time based on payment; 
+<i class="no-highlight">8</i>&nbsp; * 3) Know earning, parking time bought; 
+<i class="no-highlight">9</i>&nbsp; * 4) Issue receipts; 
+<i class="no-highlight">10</i>&nbsp; * 5) Handle buy and cancel events.
+<i class="no-highlight">11</i>&nbsp; *
+<i class="no-highlight">12</i>&nbsp; * This source code is from the book &quot;Flexible, Reliable Software: Using
+<i class="no-highlight">13</i>&nbsp; * Patterns and Agile Development&quot; published 2010 by CRC Press. Author: Henrik B
+<i class="no-highlight">14</i>&nbsp; * Christensen Computer Science Department Aarhus University
+<i class="no-highlight">15</i>&nbsp; *
+<i class="no-highlight">16</i>&nbsp; * This source code is provided WITHOUT ANY WARRANTY either expressed or
+<i class="no-highlight">17</i>&nbsp; * implied. You may study, use, modify, and distribute it for non-commercial
+<i class="no-highlight">18</i>&nbsp; * purposes. For any commercial use, see http://www.baerbak.com/
+<i class="no-highlight">19</i>&nbsp; */
+<i class="no-highlight">20</i>&nbsp;package edu.temple.cis.paystation;
+<i class="no-highlight">21</i>&nbsp;
+<i class="no-highlight">22</i>&nbsp;import java.util.*;
+<i class="no-highlight">23</i>&nbsp;
+<i class="no-highlight">24</i>&nbsp;public interface PayStation {
+<i class="no-highlight">25</i>&nbsp;
+<i class="no-highlight">26</i>&nbsp;    /**
+<i class="no-highlight">27</i>&nbsp;     * Insert coin into the pay station and adjust state accordingly.
+<i class="no-highlight">28</i>&nbsp;     *
+<i class="no-highlight">29</i>&nbsp;     * @param coinValue is an integer value representing the coin in cent. That
+<i class="no-highlight">30</i>&nbsp;     * is, a quarter is coinValue=25, etc.
+<i class="no-highlight">31</i>&nbsp;     * @throws IllegalCoinException in case coinValue is not a valid coin value
+<i class="no-highlight">32</i>&nbsp;     */
+<i class="no-highlight">33</i>&nbsp;    public void addPayment(int coinValue) throws IllegalCoinException;
+<i class="no-highlight">34</i>&nbsp;
+<i class="no-highlight">35</i>&nbsp;    /**
+<i class="no-highlight">36</i>&nbsp;     * Read the machine&#39;s display. The display shows a numerical description of
+<i class="no-highlight">37</i>&nbsp;     * the amount of parking time accumulated so far based on inserted payment.
+<i class="no-highlight">38</i>&nbsp;     *
+<i class="no-highlight">39</i>&nbsp;     * @return the number to display on the pay station display
+<i class="no-highlight">40</i>&nbsp;     */
+<i class="no-highlight">41</i>&nbsp;    public int readDisplay();
+<i class="no-highlight">42</i>&nbsp;
+<i class="no-highlight">43</i>&nbsp;    /**
+<i class="no-highlight">44</i>&nbsp;     * Buy parking time. Terminate the ongoing transaction and return a parking
+<i class="no-highlight">45</i>&nbsp;     * receipt. A non-null object is always returned.
+<i class="no-highlight">46</i>&nbsp;     *
+<i class="no-highlight">47</i>&nbsp;     * @return a valid parking receipt object.
+<i class="no-highlight">48</i>&nbsp;     */
+<i class="no-highlight">49</i>&nbsp;    public Receipt buy();
+<i class="no-highlight">50</i>&nbsp;
+<i class="no-highlight">51</i>&nbsp;    /**
+<i class="no-highlight">52</i>&nbsp;     * Cancel the present transaction. Resets the machine for a new transaction.
+<i class="no-highlight">53</i>&nbsp;     */
+<i class="no-highlight">54</i>&nbsp;    public Map&lt;Integer,Integer&gt; cancel();
+<i class="no-highlight">55</i>&nbsp;
+<i class="no-highlight">56</i>&nbsp;    /**
+<i class="no-highlight">57</i>&nbsp;     * Read the total amount collected from the paystation.
+<i class="no-highlight">58</i>&nbsp;     */
+<i class="no-highlight">59</i>&nbsp;    public int readTotal();
+<i class="no-highlight">60</i>&nbsp;
+<i class="no-highlight">61</i>&nbsp;    /**
+<i class="no-highlight">62</i>&nbsp;     * Empty the paystation and return the total amount.
+<i class="no-highlight">63</i>&nbsp;     */
+<i class="no-highlight">64</i>&nbsp;    public int empty();
+<i class="no-highlight">65</i>&nbsp;
+<i class="no-highlight">66</i>&nbsp;    /**
+<i class="no-highlight">67</i>&nbsp;     * Return the current hash map of entered coins.
+<i class="no-highlight">68</i>&nbsp;     */
+<i class="no-highlight">69</i>&nbsp;    public Map&lt;Integer,Integer&gt; returnCurrentMapOfCoinsEntered();
+<i class="no-highlight">70</i>&nbsp;
+<i class="no-highlight">71</i>&nbsp;    /**
+<i class="no-highlight">72</i>&nbsp;     * Sets the rate strategy to use.
+<i class="no-highlight">73</i>&nbsp;     */
+<i class="no-highlight">74</i>&nbsp;    public void setRateStrategy(RateStrategy rateStrategy);
+<i class="no-highlight">75</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-03-08 20:13</div>
+</div>
+</body>
+</html>
