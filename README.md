@@ -7,13 +7,13 @@ Citation for the history of Tetris, from the official Tetris website: https://te
 
 # Description
 
-In this project, Javascript, HTML and CSS coding languages to create new releases of this game. Adding different play modes and statistics were challenging part of new release's. 
+In this project, Javascript, HTML and CSS coding languages are used to create new releases of this game. Adding different play modes, statistics, and visual features were the primary goals of new release's. 
 
 # Table of Contents
 
 ![tetris_menu](https://user-images.githubusercontent.com/89690556/164704878-8bb90b57-e223-4f72-9751-271d940aeaa7.PNG)
 
-- Disco Mode: Allow players to activate this mode while playing.
+- Disco Mode: Allow players to be groovy while playing Tetris when this mode is activated.
 - Standard Game: Classic tetris  game play mode.
 - Sprint Game: Clear 20 line as fast as possible. line counter goes down after every line on this game mode.
 - Garbage Game: Start with random blocks (black colored). New lines will suddenly appear at random to make game more challenging on this game mode.
@@ -24,11 +24,11 @@ In this project, Javascript, HTML and CSS coding languages to create new release
 - Statistics: This section shows player('s) various data about the game.
 
 # How to run
- - Download the latest release from repository, Uncompress the files and open tetris.html file.
+ - Download the latest release from repository, Uncompress the files and open tetris.html file. Make sure that the zoom level in your broswer is at exactly 100%. 
 
-# How to Use the Project
+# How to Edit the Project
 
-- Single Javascript file along with its HTML and CSS. Functions for project described top of their structure. 
+- The functionality of this program lies in the tetris.js, tetris.html, and tetris.css files. Feel free to modify any of these to your liking. 
 
 # How to contribute
 Follow this [project board](http://trello.com/b/sWlulrWJ/tetris) to be informed of the project's status.
