@@ -176,7 +176,7 @@ function Tetris()
 		if (self.puzzle && !confirm('Are you sure you want to start a new game ?')) return;
 		self.reset();
 		self.stats.start(false);
-		//document.getElementById("tetris-nextpuzzle").style.display = "block";
+		document.getElementById("tetris-nextpuzzle").style.display = "block";
 		//document.getElementById("tetris-keys-player1").style.display = "none";
 		self.area = new Area(self.unit, self.areaX, self.areaY, "tetris-area1", false);
 		self.puzzle = new Puzzle(self, self.area, true, false, false);
@@ -197,7 +197,7 @@ function Tetris()
 		self.reset();
 		document.getElementById("right").style.display = "block";
 		self.stats.start(false);
-		//document.getElementById("tetris-nextpuzzle").style.display = "block";
+		document.getElementById("tetris-nextpuzzle").style.display = "block";
 		//document.getElementById("tetris-keys-player1").style.display = "none";
 		self.area = new Area(self.unit, self.areaX, self.areaY, "tetris-area1", false);
 		self.puzzle = new Puzzle(self, self.area, false, false, false, true, false);
@@ -269,6 +269,49 @@ function Tetris()
 	 * @return void
 	 * @access public event
 	 */
+	this.sprint = function()
+	{
+		if (self.puzzle && !confirm('Are you sure you want to start a new game ?')) return;
+		self.reset();
+		self.stats.start(true);
+		self.area = new Area(self.unit, self.areaX, self.areaY, "tetris-area1", false);
+		self.puzzle = new Puzzle(self, self.area, true, true, false);
+		document.getElementById("tetris-nextpuzzle").style.display = "block";
+		// Start the sprint game. This is necessary here to avoid the game contiuing after a
+		// sprint game has been won.
+		self.puzzle.startSprintGame();
+		if (self.puzzle.mayPlace()) {
+			self.puzzle.place();
+		} else {
+			// Despite this being in sprint mode, failing to clear all lines should not allow
+			// the user to enter a high score for sprint mode.
+			self.gameOver(true, false, false);
+		}
+	}
+
+	/**
+	 * @return void
+	 * @access public event
+	 */
+	this.garbage = function()
+	{
+		if (self.puzzle && !confirm("Are you sure you want to start a new game ?'")) return;
+		self.reset();
+		self.stats.start(false);
+		document.getElementById("tetris-nextpuzzle").style.display = "block";
+		self.area = new Area(self.unit, self.areaX, self.areaY, "tetris-area1", true);
+		self.puzzle = new Puzzle(self, self.area, true, false, true);
+		if (self.puzzle.mayPlace()) {
+			self.puzzle.place();
+		} else {
+			self.gameOver(false, false, true);
+		}
+	}
+
+	/**
+	 * @return void
+	 * @access public event
+	 */
 	this.reset = function()
 	{
 		if (self.puzzle) {
@@ -327,6 +370,7 @@ function Tetris()
 		document.getElementById("tetris-nextpuzzle").style.display = "none";
 		document.getElementById("tetris-gameover").style.display = "block";
 		document.getElementById("right").style.display = "none";
+
 		// Add garbage high scores
 		if (isGarbage == true) {
 			if (this.garbageHighscores.mayAdd(this.stats.getScore(), false)) {
@@ -420,7 +464,6 @@ function Tetris()
 					else{
 						self.stats.setScore(self.stats.getScore() + 5 + self.stats.getLevel());
 					}
-					
 				}
 				self.puzzle.moveDown();
 				if(self.puzzle.isComp == true){
@@ -1043,7 +1086,6 @@ function Tetris()
 			return this.time2;
 		};
 
-
 		/**
 		 * Number of puzzles created on current level
 		 * @return int
@@ -1328,6 +1370,7 @@ function Tetris()
 		this.elements = [];
 		this.nextElements = []; // next board elements
 
+
 		// (x,y) position of the puzzle (top-left)
 		this.x = null;
 		this.y = null;
@@ -1370,6 +1413,7 @@ function Tetris()
 				[0,0,0,0]
 			]
 		];
+
 
 		/**
 		 * Reset puzzle. It does not destroy html elements in this.board.
@@ -1571,8 +1615,10 @@ function Tetris()
 			this.y = 1;
 			this.board = this.createEmptyPuzzle(puzzle.length, puzzle[0].length);
 			// create puzzle
+
 			for (var y = puzzle.length - 1; y >= 0; y--) {
 				for (var x = 0; x < puzzle[y].length; x++) {
+
 					if (puzzle[y][x]) {
 						lineFound = true;
 						var el = document.createElement("div");
@@ -1589,24 +1635,44 @@ function Tetris()
 				}
 				if (lineFound) {
 					lines++;
-				}
-			}
+			}// end for (var y = puzzle.length - 1; y >= 0; y--)
+		}
+
 			this.running = true;
 			this.fallDownID = setTimeout(this.fallDown, this.speed);
 			// next puzzle
 			var nextPuzzle = this.puzzles[this.nextType];
-			for (var y = 0; y < nextPuzzle.length; y++) {
-				for (var x = 0; x < nextPuzzle[y].length; x++) {
-					if (nextPuzzle[y][x]) {
-						var el = document.createElement("div");
-						el.className = "block" + this.nextType;
-						el.style.left = (x * this.area.unit) + "px";
-						el.style.top = (y * this.area.unit) + "px";
-						document.getElementById("tetris-nextpuzzle").appendChild(el);
-						this.nextElements.push(el);
+
+
+			//Created for different puzzle shapes!
+
+			/*var i =5;
+
+			for (i in nextPuzzle){
+				let firstElement = nextPuzzle[i];
+				for (let innerArray in nextPuzzle){
+					if (nextPuzzle[innerArray][0]===firstElement[0] && i != innerArray){
+						for (let k =1; k<firstElement.length;k++){
+							firstElement[k] = firstElement[k]+nextPuzzle[innerArray][k];
+						}
 					}
 				}
-			}
+			}*/
+
+					for (var y = 0; y < nextPuzzle.length; y++) {
+						for (var x = 0; x < nextPuzzle[y].length; x++) {
+							if (nextPuzzle[y][x]) {
+								var el = document.createElement("div");
+								el.className = "block" + this.nextType;
+								el.style.left = (x * this.area.unit) + "px";
+								el.style.top = (y * this.area.unit) + "px";
+								document.getElementById("tetris-nextpuzzle").appendChild(el);
+								this.nextElements.push(el);
+
+					}
+				}
+			}//end for (var y = 0; y < nextPuzzle.length; y++)
+
 		};
 
 		/**
