@@ -5,8 +5,6 @@ The product is a browser-based version of the classic mode of Tetris. The langua
 
 Citation for the history of Tetris, from the official Tetris website: https://tetris.com/history-of-tetris 
 
-![This is a screenshot.](images.png)
-
 # Description
 
 In this project, Javascript, HTML and CSS coding languages to create new releases of this game. Adding different play modes and statistics were challenging part of new release's. 
