@@ -7,7 +7,7 @@ Citation for the history of Tetris, from the official Tetris website: https://te
 
 # Description
 
-In this project, Javascript, HTML and CSS coding languages are used to create new releases of this game. Adding different play modes, statistics, and visual features were the primary goals of new release's. 
+In this project, Javascript, HTML and CSS coding languages are used to create new releases of this game. Adding different play modes, statistics, and visual features were the primary goals of new releases. 
 
 # Table of Contents
 
