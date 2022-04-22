@@ -18,9 +18,34 @@
 <table style="width: 100%; height: 100%;" cellspacing="0" cellpadding="0"><tr><td style="vertical-align: middle;">
 
 	<div id="tetris">
+
+
+		<button class="button1" onclick="showElement()">
+			Show Menu
+		</button>
+
+		<button class="button2" onclick="hideElement()">
+			Hide Menu
+		</button>
+
+		<script type="text/javascript">
+			function showElement() {
+				element = document.querySelector('.left');
+				element.style.visibility = 'visible';
+			}
+
+			function hideElement() {
+				element = document.querySelector('.left');
+				element.style.visibility = 'hidden';
+			}
+		</script>
+
+		<div id="tetris-nextpuzzle"></div>
+
 		<div class="left">
-			<h1><div><a href="javascript:void(0)" id="switch">Disco Mode</a>
-			</div></h1>
+			<h3><div><a href="javascript:void(0)" id="switch">Disco Mode</a>
+			</div></h3>
+
 			<div class="menu">
 				<div><a href="javascript:void(0)" id="tetris-menu-start">Standard Game</a></div>
 				<div><a href="javascript:void(0)" id="tetris-menu-sprint-start">Sprint Game</a></div>
@@ -35,7 +60,7 @@
 				<div><a href="javascript:void(0)" id="tetris-menu-highscores">Highscores</a></div>
 				<div><a href="javascript:void(0)" id="tetris-menu-help">About</a></div>
 			</div>
-			<div id="tetris-nextpuzzle"></div>
+
 			<div id="tetris-keys-player1">
 				<div class="h5">Player 1:</div>
 				<table cellspacing="0" cellpadding="0">
@@ -200,6 +225,9 @@
 	tetris.areaX = 12;
 	tetris.areaY = 22;
 	</script>
+
+
+
 
 </body>
 </html>
