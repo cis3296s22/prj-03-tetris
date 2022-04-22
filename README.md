@@ -13,7 +13,7 @@ In this project, Javascript, HTML and CSS coding languages to create new release
 
 #Table of Contents
 
-![This is a screenshot.](tetris_menu.PNG)
+![tetris_menu](https://user-images.githubusercontent.com/89690556/164704878-8bb90b57-e223-4f72-9751-271d940aeaa7.PNG)
 
 - Disco Mode: Allow players to activate this mode while playing.
 - Standard Game: Classic tetris  game play mode.
