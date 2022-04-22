@@ -7,11 +7,11 @@ Citation for the history of Tetris, from the official Tetris website: https://te
 
 ![This is a screenshot.](images.png)
 
-#Description
+# Description
 
 In this project, Javascript, HTML and CSS coding languages to create new releases of this game. Adding different play modes and statistics were challenging part of new release's. 
 
-#Table of Contents
+# Table of Contents
 
 ![tetris_menu](https://user-images.githubusercontent.com/89690556/164704878-8bb90b57-e223-4f72-9751-271d940aeaa7.PNG)
 
@@ -40,7 +40,7 @@ tar -xzf
 
 For quick play: Download the latest release from repository, Uncompress the files and open tetris.html file.
 
-#How to Use the Project
+# How to Use the Project
 
 - Single Javascript file along with its HTML and CSS. Functions for project described top of their structure. 
 
@@ -55,7 +55,7 @@ Follow this [project board](http://trello.com/b/sWlulrWJ/tetris) to be informed 
 - What file and target to compile and run. 
 - What is expected to happen when the app start. 
 
-#Include Credits
+# Include Credits
 
 Collaborators:
 - Thomas M Herner
