@@ -18,7 +18,7 @@
  * 2) if puzzles created in current level >= 10+level*2 then increase level
  * 3) after puzzle falling score is increased by 1000*level*linesRemoved
  * 4) each down action increases score by 5+level
- *
+*
  * API:
  *
  * public - method can be called outside of the object
@@ -176,6 +176,7 @@ function Tetris()
 		if (self.puzzle && !confirm('Are you sure you want to start a new game ?')) return;
 		self.reset();
 		self.stats.start(false);
+		document.getElementById("right").style.display = "none";
 		document.getElementById("tetris-nextpuzzle").style.display = "block";
 		//document.getElementById("tetris-keys-player1").style.display = "none";
 		self.area = new Area(self.unit, self.areaX, self.areaY, "tetris-area1", false);
@@ -213,6 +214,7 @@ function Tetris()
 		if (self.puzzle && !confirm('Are you sure you want to start a new game ?')) return;
 		self.reset();
 		self.stats.start(false);
+		document.getElementById("right").style.display = "none";
 		//document.getElementById("tetris-nextpuzzle").style.display = "block";
 		//document.getElementById("tetris-keys-player1").style.display = "none";
 		self.area = new Area(self.unit, self.areaX, self.areaY, "tetris-area1", false);
@@ -233,6 +235,7 @@ function Tetris()
 		if (self.puzzle && !confirm('Are you sure you want to start a new game ?')) return;
 		self.reset();
 		self.stats.start(true);
+		document.getElementById("right").style.display = "none";
 		self.area = new Area(self.unit, self.areaX, self.areaY, "tetris-area1", false);
 		self.puzzle = new Puzzle(self, self.area, true, true, false);
 		// Start the sprint game. This is necessary here to avoid the game contiuing after a
@@ -256,6 +259,7 @@ function Tetris()
 		if (self.puzzle && !confirm("Are you sure you want to start a new game ?'")) return;
 		self.reset();
 		self.stats.start(false);
+		document.getElementById("right").style.display = "none";
 		self.area = new Area(self.unit, self.areaX, self.areaY, "tetris-area1", true);
 		self.puzzle = new Puzzle(self, self.area, true, false, true);
 		if (self.puzzle.mayPlace()) {
@@ -274,6 +278,7 @@ function Tetris()
 		if (self.puzzle && !confirm('Are you sure you want to start a new game ?')) return;
 		self.reset();
 		self.stats.start(true);
+		document.getElementById("right").style.display = "none";
 		self.area = new Area(self.unit, self.areaX, self.areaY, "tetris-area1", false);
 		self.puzzle = new Puzzle(self, self.area, true, true, false);
 		document.getElementById("tetris-nextpuzzle").style.display = "block";
@@ -298,6 +303,7 @@ function Tetris()
 		if (self.puzzle && !confirm("Are you sure you want to start a new game ?'")) return;
 		self.reset();
 		self.stats.start(false);
+		document.getElementById("right").style.display = "none";
 		document.getElementById("tetris-nextpuzzle").style.display = "block";
 		self.area = new Area(self.unit, self.areaX, self.areaY, "tetris-area1", true);
 		self.puzzle = new Puzzle(self, self.area, true, false, true);
@@ -608,6 +614,7 @@ function Tetris()
 		this.blur();
 	};
 	document.getElementById("tetris-highscores-close").onclick = highscores.close;
+	document.getElementById("tetris-multiplayer-close").onclick = multiplayerMenu.close;
 
 	document.getElementById("switch").onclick = function(e){ e.preventDefault(); discoSwitch(); }
 
@@ -644,7 +651,7 @@ function Tetris()
 	function dancerMover(){
 		var holder = document.getElementById("discoDancer").offsetLeft;
 		holder += 10;
-		if(holder >= 1000){
+		if(holder >= 2300){
 			holder = 0;
 		}
 		document.getElementById("discoDancer").style.left = holder + 'px';
