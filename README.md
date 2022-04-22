@@ -31,7 +31,7 @@ In this project, Javascript, HTML and CSS coding languages are used to create ne
 - The functionality of this program lies in the tetris.js, tetris.html, and tetris.css files. Feel free to modify any of these to your liking. 
 
 # How to contribute
-Follow this [project board](http://trello.com/b/sWlulrWJ/tetris) to be informed of the project's status.
+Follow this [project board](https://trello.com/b/sWluIrWJ/tetris) to be informed of the project's status.
 
 ### How to build
 - Use this github repository: ... 
