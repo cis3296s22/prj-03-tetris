@@ -28,7 +28,27 @@ body, table, input {
 	top: 0px;
 }
 
+#right {
+	background:	#F5EDE3;
+	position: absolute;
+	width: 150px;
+	height:	38.55%;
+	right: 878px;
+	top: 398px;
+	border:	#BE9E7C	1px	solid;
+	display: none;
+}
 
+#stats2{
+	position: absolute;
+	left: 10px;
+	bottom:	5px;
+}
+
+#tetris	.left .menu	{
+	margin-top:	1em;
+
+}
 
 .left-border { background: #E4BE95;	position: absolute;	z-index: 100; top: 0px;	left: 150px; width:	1px; height: 100%; }
 

@@ -27,14 +27,23 @@
  * class Tetris
  * ------------
  * public event void start()
+ * public event void multiplayerCoop()
+ * public event void multiplayerComp()
+ * public event void sprint()
+ * public event void garbage()
  * public event void reset()
  * public event void pause()
  * public event void gameOver()
  * public event void up()
+ * public event void up2()
  * public event void down()
+ * public event void down2()
  * public event void left()
+ * public event void left2()
  * public event void right()
+ * public event void right2()
  * public event void space()
+ * public event void tab()
  *
  * class Window
  * ------------
@@ -54,21 +63,35 @@
  * public void reset()
  * public event void incTime()
  * public void setScore(int i)
+ * public void setScore2(int i)
  * public void setLevel(int i)
+ * public void setLevel2(int i)
  * public void setLines(int i)
+ * public void setLines2(int i)
  * public void setPuzzles(int i)
  * public void setActions(int i)
+ * public void setActions2(int i)
  * public void setLeftMovements(int i)
+ * public void setLeftMovements2(int i)
  * public void setRightMovements(int i)
+ * public void setRightMovements2(int i)
  * public void setRotations(int i)
+ * public void setRotations2(int i)
  * public int getScore()
+ * public int getScore2()
  * public int getLevel()
+ * public int getLevel2()
  * public int getLines()
+ * public int getLines2()
  * public int getPuzzles()
  * public int getActions()
+ * public int getActions2()
  * public int getLeftMovements()
+ * public int getLeftMovements2()
  * public int getRightMovements()
+ * public int getRightMovements2()
  * public int getRotations()
+ * public int getRotations2()
  *
  * class Area
  * ----------
@@ -168,21 +191,79 @@ function Tetris()
 	 * @return void
 	 * @access public event
 	 */
-	 this.multiplayer = function()
+	 this.multiplayerComp  = function()
 	 {
 		if (self.puzzle && !confirm('Are you sure you want to start a new game ?')) return;
 		self.reset();
+		document.getElementById("right").style.display = "block";
 		self.stats.start(false);
 		document.getElementById("tetris-nextpuzzle").style.display = "block";
 		//document.getElementById("tetris-keys-player1").style.display = "none";
 		self.area = new Area(self.unit, self.areaX, self.areaY, "tetris-area1", false);
-		self.puzzle = new Puzzle(self, self.area, false, false, false);
+		self.puzzle = new Puzzle(self, self.area, false, false, false, true, false);
 		if (self.puzzle.mayPlace()) {
 			self.puzzle.place();
 		} else {
 			self.gameOver(false, false, false);
 		}
 	 };
+
+	 this.multiplayerCoop  = function()
+	 {
+		if (self.puzzle && !confirm('Are you sure you want to start a new game ?')) return;
+		self.reset();
+		self.stats.start(false);
+		//document.getElementById("tetris-nextpuzzle").style.display = "block";
+		//document.getElementById("tetris-keys-player1").style.display = "none";
+		self.area = new Area(self.unit, self.areaX, self.areaY, "tetris-area1", false);
+		self.puzzle = new Puzzle(self, self.area, false, false, false, false, true);
+		if (self.puzzle.mayPlace()) {
+			self.puzzle.place();
+		} else {
+			self.gameOver(false, false, false);
+		}
+	 };
+
+	/**
+	 * @return void
+	 * @access public event
+	 */
+	this.sprint = function()
+	{
+		if (self.puzzle && !confirm('Are you sure you want to start a new game ?')) return;
+		self.reset();
+		self.stats.start(true);
+		self.area = new Area(self.unit, self.areaX, self.areaY, "tetris-area1", false);
+		self.puzzle = new Puzzle(self, self.area, true, true, false);
+		// Start the sprint game. This is necessary here to avoid the game contiuing after a
+		// sprint game has been won.
+		self.puzzle.startSprintGame();
+		if (self.puzzle.mayPlace()) {
+			self.puzzle.place();
+		} else {
+			// Despite this being in sprint mode, failing to clear all lines should not allow
+			// the user to enter a high score for sprint mode.
+			self.gameOver(true, false, false);
+		}
+	}
+
+	/**
+	 * @return void
+	 * @access public event
+	 */
+	this.garbage = function()
+	{
+		if (self.puzzle && !confirm("Are you sure you want to start a new game ?'")) return;
+		self.reset();
+		self.stats.start(false);
+		self.area = new Area(self.unit, self.areaX, self.areaY, "tetris-area1", true);
+		self.puzzle = new Puzzle(self, self.area, true, false, true);
+		if (self.puzzle.mayPlace()) {
+			self.puzzle.place();
+		} else {
+			self.gameOver(false, false, true);
+		}
+	}
 
 	/**
 	 * @return void
@@ -288,6 +369,8 @@ function Tetris()
 		self.puzzle.stop();
 		document.getElementById("tetris-nextpuzzle").style.display = "none";
 		document.getElementById("tetris-gameover").style.display = "block";
+		document.getElementById("right").style.display = "none";
+
 		// Add garbage high scores
 		if (isGarbage == true) {
 			if (this.garbageHighscores.mayAdd(this.stats.getScore(), false)) {
@@ -300,7 +383,7 @@ function Tetris()
 		// Otherwise add the sprint high score
 		} else if (wonSprintGame == true) {
 			if (this.sprintHighscores.mayAdd(this.stats.getScore(), true)) {
-				var name = prompt("Game Over !\n Edited by Giray, Shiv, and Tommy! Enter your name!:", "");
+				var name = prompt("Game Over !\n Enter your name!:", "");
 				if (name && name.trim().length) {
 					this.sprintHighscores.add(name, this.stats.getScore(), true);
 				}
@@ -308,7 +391,7 @@ function Tetris()
 		// Add high scores for standard mode
 		} else if (isSprint == false) {
 			if (this.normalHighscores.mayAdd(this.stats.getScore(), false)) {
-				var name = prompt("Game Over !\n Edited by Giray, Shiv, and Tommy! Enter your name!:", "");
+				var name = prompt("Game Over !\n Enter your name!:", "");
 				if (name && name.trim().length) {
 					this.normalHighscores.add(name, this.stats.getScore(), false);
 				}
@@ -327,6 +410,7 @@ function Tetris()
 				self.puzzle.rotate();
 				self.stats.setActions(self.stats.getActions() + 1);
 				self.stats.setRotations(self.stats.getRotations() + 1);
+				
 			}
 		}
 	};
@@ -340,8 +424,14 @@ function Tetris()
 		 if (self.puzzle && self.puzzle.isRunning() && !self.puzzle.isStopped()&& (self.puzzle.number % 2 == 1) ) {
 			 if (self.puzzle.mayRotate()) {
 				self.puzzle.rotate();
-				self.stats.setActions(self.stats.getActions() + 1);
-				self.stats.setRotations(self.stats.getRotations() + 1); 
+				if(self.puzzle.isComp == true){
+					self.stats.setActions2(self.stats.getActions2() + 1);
+					self.stats.setRotations2(self.stats.getRotations2() + 1); 
+				}
+				else{
+					self.stats.setActions(self.stats.getActions() + 1);
+					self.stats.setRotations(self.stats.getRotations() + 1); 
+				}
 			 }
 		 }
 	 };
@@ -368,10 +458,21 @@ function Tetris()
 		if (self.puzzle && self.puzzle.isRunning() && !self.puzzle.isStopped() && (self.puzzle.number % 2 == 1) ) {
 			if (self.puzzle.mayMoveDown()) {
 				if (self.puzzle.sprint == false && self.puzzle.isGarbage == false) {
-					self.stats.setScore(self.stats.getScore() + 5 + self.stats.getLevel());
+					if(self.puzzle.isComp == true){
+						self.stats.setScore2(self.stats.getScore2() + 5 + self.stats.getLevel());
+					}
+					else{
+						self.stats.setScore(self.stats.getScore() + 5 + self.stats.getLevel());
+					}
 				}
 				self.puzzle.moveDown();
-				self.stats.setActions(self.stats.getActions() + 1);
+				if(self.puzzle.isComp == true){
+					self.stats.setActions2(self.stats.getActions2() + 1);
+				}
+				else{
+					self.stats.setActions(self.stats.getActions() + 1);
+				}
+				
 			}
 		}
 	};
@@ -400,8 +501,15 @@ function Tetris()
 		 if (self.puzzle && self.puzzle.isRunning() && !self.puzzle.isStopped() && (self.puzzle.number % 2 == 1) ) {
 			 if (self.puzzle.mayMoveLeft()) {
 				self.puzzle.moveLeft();
-				self.stats.setActions(self.stats.getActions() + 1);
-				self.stats.setLeftMovements(self.stats.getLeftMovements() + 1);
+				if(self.puzzle.isComp == true){
+					self.stats.setActions2(self.stats.getActions2() + 1);
+					self.stats.setLeftMovements2(self.stats.getLeftMovements2() + 1);
+				}
+				else{
+					self.stats.setActions(self.stats.getActions() + 1);
+					self.stats.setLeftMovements(self.stats.getLeftMovements() + 1);
+				}
+				
 			 }
 		 }
 	 };
@@ -431,8 +539,15 @@ function Tetris()
 		 if (self.puzzle && self.puzzle.isRunning() && !self.puzzle.isStopped() && (self.puzzle.number % 2 == 1) ) {
 			 if (self.puzzle.mayMoveRight()) {
 				self.puzzle.moveRight();
-				self.stats.setActions(self.stats.getActions() + 1);
-				self.stats.setRightMovements(self.stats.getRightMovements() + 1);
+				if(self.puzzle.isComp == true){
+					self.stats.setActions2(self.stats.getActions2() + 1);
+					self.stats.setRightMovements2(self.stats.getRightMovements2() + 1);
+				}
+				else{
+					self.stats.setActions(self.stats.getActions() + 1);
+					self.stats.setRightMovements(self.stats.getRightMovements() + 1);
+				}
+				
 			 }
 		 }
 	 };
@@ -471,8 +586,8 @@ function Tetris()
 	document.getElementById("tetris-menu-sprint-start").onclick = function() { helpwindow.close(); highscores.close(); self.sprint(); this.blur(); };
 	document.getElementById("tetris-menu-garbage-start").onclick = function() { helpwindow.close(); highscores.close(); self.garbage(); this.blur(); };
 	document.getElementById("tetris-menu-multiplayer").onclick = function() { helpwindow.close(); highscores.close(); multiplayerMenu.activate(); this.blur(); };
-	document.getElementById("multiplayerCooperative").onclick = function() { helpwindow.close(); highscores.close(); multiplayerMenu.close(); self.start(); self.multiplayer(); this.blur(); };
-	document.getElementById("multiplayerCooperative").onclick = function() { helpwindow.close(); highscores.close(); self.start(); multiplayerMenu.close(); self.multiplayer(); this.blur(); };
+	document.getElementById("multiplayerCooperative").onclick = function() { helpwindow.close(); highscores.close(); multiplayerMenu.close(); self.start(); self.multiplayerCoop(); this.blur(); };
+	document.getElementById("multiplayerCompetitive").onclick = function() { helpwindow.close(); highscores.close(); self.start(); multiplayerMenu.close(); self.multiplayerComp(); this.blur(); };
 	// document.getElementById("tetris-menu-reset").onclick = function() { helpwindow.close(); highscores.close(); self.reset(); this.blur(); };
 
 	document.getElementById("tetris-menu-pause").onclick = function() { self.pause(); this.blur(); };
@@ -527,7 +642,6 @@ function Tetris()
 	}
 
 	function dancerMover(){
-		console.log(document.getElementById("discoDancer").offsetLeft);
 		var holder = document.getElementById("discoDancer").offsetLeft;
 		holder += 10;
 		if(holder >= 1000){
@@ -663,6 +777,7 @@ function Tetris()
 	 */
 	function Stats()
 	{
+		isComp = this.isComp;
 		this.level;
 		this.time;
 		this.apm;
@@ -684,7 +799,16 @@ function Tetris()
 			"actions": document.getElementById("tetris-stats-actions"),
 			"leftMovements": document.getElementById("tetris-stats-left-movements"),
 			"rightMovements": document.getElementById("tetris-stats-right-movements"),
-			"rotations": document.getElementById("tetris-stats-rotations")
+			"rotations": document.getElementById("tetris-stats-rotations"),
+			"level2": document.getElementById("tetris-stats-level2"),
+			"time2":  document.getElementById("tetris-stats-time2"),
+			"apm2":  document.getElementById("tetris-stats-apm2"),
+			"lines2": document.getElementById("tetris-stats-lines2"),
+			"score2": document.getElementById("tetris-stats-score2"),
+			"actions2": document.getElementById("tetris-stats-actions2"),
+			"leftMovements2": document.getElementById("tetris-stats-left-movements2"),
+			"rightMovements2": document.getElementById("tetris-stats-right-movements2"),
+			"rotations2": document.getElementById("tetris-stats-rotations2")
 		}
 
 		this.timerId = null;
@@ -747,6 +871,22 @@ function Tetris()
 			this.el.leftMovements.innerHTML = this.leftMovements;
 			this.el.rightMovements.innerHTML = this.rightMovements;
 			this.el.rotations.innerHTML = this.rotations;
+			this.score2 = 0;
+			this.time2 = 0;
+			this.actions2 = 0;
+			this.lines2 = 0;
+			this.leftMovements2 = 0;
+			this.rightMovements2 = 0;
+			this.rotations2 = 0;
+			this.el.level2.innerHTML = this.level;
+			this.el.time2.innerHTML = this.time;
+			this.el.apm2.innerHTML = this.apm;
+			this.el.lines2.innerHTML = this.lines;
+			this.el.score2.innerHTML = this.score;
+			this.el.actions2.innerHTML = this.actions;
+			this.el.leftMovements2.innerHTML = this.leftMovements;
+			this.el.rightMovements2.innerHTML = this.rightMovements;
+			this.el.rotations2.innerHTML = this.rotations;
 		};
 
 		/**
@@ -761,6 +901,11 @@ function Tetris()
 			self.el.time.innerHTML = self.time;
 			self.apm = parseInt((self.actions / self.time) * 60);
 			self.el.apm.innerHTML = self.apm;
+			self.time2++;
+			self.el.time2.innerHTML = self.time2;
+			self.apm2 = parseInt((self.actions2 / self.time2) * 60);
+			self.el.apm2.innerHTML = self.apm2;
+			
 		};
 
 		/**
@@ -773,6 +918,12 @@ function Tetris()
 		{
 			this.score = i;
 			this.el.score.innerHTML = this.score;
+		};
+
+		this.setScore2 = function(i)
+		{
+			this.score2 = i;
+			this.el.score2.innerHTML = this.score2;
 		};
 
 		/**
@@ -798,6 +949,11 @@ function Tetris()
 			this.lines = i;
 			this.el.lines.innerHTML = this.lines;
 		};
+		this.setLines2 = function(i)
+		{
+			this.lines2 = i;
+			this.el.lines2.innerHTML = this.lines2;
+		};
 
 		/**
 		 * Number of puzzles created on current level
@@ -820,6 +976,11 @@ function Tetris()
 			this.actions = i;
 			this.el.actions.innerHTML = this.actions;
 		};
+
+		this.setActions2 = function(i){
+			this.actions2 = i;
+			this.el.actions2.innerHTML = this.actions2;
+		}
 		/**
 		 * @param int i
 		 * @return void
@@ -829,6 +990,12 @@ function Tetris()
 		{
 			this.leftMovements = i;
 			this.el.leftMovements.innerHTML = this.leftMovements;
+		};
+	
+		this.setLeftMovements2 = function(i)
+		{
+			this.leftMovements2 = i;
+			this.el.leftMovements2.innerHTML = this.leftMovements2;
 		};
 		/**
 		 * @param int i
@@ -840,6 +1007,11 @@ function Tetris()
 			this.rightMovements = i;
 			this.el.rightMovements.innerHTML = this.rightMovements;
 		};
+		this.setRightMovements2 = function(i)
+		{
+			this.rightMovements2 = i;
+			this.el.rightMovements2.innerHTML = this.rightMovements2;
+		};
 		/**
 		 * @param int i
 		 * @return void
@@ -850,6 +1022,12 @@ function Tetris()
 			this.rotations = i;
 			this.el.rotations.innerHTML = this.rotations;
 		};
+
+		this.setRotations2 = function(i)
+		{
+			this.rotations2 = i;
+			this.el.rotations2.innerHTML = this.rotations2;
+		};
 		/**
 		 * @return int
 		 * @access public
@@ -857,6 +1035,10 @@ function Tetris()
 		this.getScore = function()
 		{
 			return this.score;
+		};
+		this.getScore2 = function()
+		{
+			return this.score2;
 		};
 
 		/**
@@ -866,6 +1048,11 @@ function Tetris()
 		this.getLevel = function()
 		{
 			return this.level;
+		};
+
+		this.getLevel2 = function()
+		{
+			return this.level2;
 		};
 
 		/**
@@ -881,9 +1068,22 @@ function Tetris()
 		 * @return int
 		 * @access public
 		 */
+		this.getLines2 = function()
+		{
+			return this.lines2;
+		};
+
+		/**
+		 * @return int
+		 * @access public
+		 */
 		this.getTime = function()
 		{
 			return this.time;
+		};
+		this.getTime2 = function()
+		{
+			return this.time2;
 		};
 
 		/**
@@ -904,6 +1104,10 @@ function Tetris()
 		{
 			return this.actions;
 		};
+
+		this.getActions2 = function(){
+			return this.actions2;
+		};
 		/**
 		 * @return int
 		 * @access public
@@ -911,6 +1115,10 @@ function Tetris()
 		this.getLeftMovements = function()
 		{
 			return this.leftMovements;
+		};
+		this.getLeftMovements2 = function()
+		{
+			return this.leftMovements2;
 		};
 		/**
 		 * @return int
@@ -920,6 +1128,10 @@ function Tetris()
 		{
 			return this.rightMovements;
 		};
+		this.getRightMovements2 = function()
+		{
+			return this.rightMovements2;
+		};
 		/**
 		 * @return int
 		 * @access public
@@ -927,6 +1139,10 @@ function Tetris()
 		this.getRotations = function()
 		{
 			return this.rotations;
+		}
+		this.getRotations2 = function()
+		{
+			return this.rotations2;
 		}
 	}
 
@@ -1125,7 +1341,7 @@ function Tetris()
 	 * Puzzle consists of blocks.
 	 * Each puzzle after rotating 4 times, returns to its primitive position.
 	 */
-	function Puzzle(tetris, area, singleplayer, sprint, isGarbage)
+	function Puzzle(tetris, area, singleplayer, sprint, isGarbage, isComp, isCoop)
 	{
 		var self = this;
 		this.tetris = tetris;
@@ -1133,6 +1349,8 @@ function Tetris()
 		this.singleplayer = singleplayer;
 		this.sprint = sprint;
 		this.isGarbage = isGarbage;
+		this.isComp = isComp;
+		this.isCoop = isCoop; 
 
 		// timeout ids
 		this.fallDownID = null;
@@ -1542,7 +1760,18 @@ function Tetris()
 							// In garbage mode, the score is equivalent to the number of lines cleared.
 							self.tetris.stats.setLines(self.tetris.stats.getLines() + lines);
 							self.tetris.stats.setScore(self.tetris.stats.getLines());
-						} else {
+						} 
+						else if(isComp == true){
+							if( (self.number % 2) == 1){
+								self.tetris.stats.setLines2(self.tetris.stats.getLines2() + lines);
+								self.tetris.stats.setScore2(self.tetris.stats.getScore2() + (1000 * self.tetris.stats.getLevel() * lines) );
+							}
+							else{
+								self.tetris.stats.setLines(self.tetris.stats.getLines() + lines);
+								self.tetris.stats.setScore(self.tetris.stats.getScore() + (1000 * self.tetris.stats.getLevel() * lines) );
+							}
+						}
+						else {
 							self.tetris.stats.setLines(self.tetris.stats.getLines() + lines);
 							self.tetris.stats.setScore(self.tetris.stats.getScore() + (1000 * self.tetris.stats.getLevel() * lines));
 						}
@@ -1606,7 +1835,18 @@ function Tetris()
 							// In garbage mode, the score is equivalent to the number of lines cleared.
 							self.tetris.stats.setLines(self.tetris.stats.getLines() + lines);
 							self.tetris.stats.setScore(self.tetris.stats.getLines());
-						} else {
+						} 
+						else if(isComp == true){
+							if( (this.number) % 2 == 1){
+								self.tetris.stats.setLines2(self.tetris.stats.getLines2() + lines);
+								self.tetris.stats.setScore2(self.tetris.stats.getScore2() + (1000 * self.tetris.stats.getLevel2() * lines) );
+							}
+							else{
+								self.tetris.stats.setLines(self.tetris.stats.getLines() + lines);
+								self.tetris.stats.setScore(self.tetris.stats.getScore() + (1000 * self.tetris.stats.getLevel() * lines));
+							}
+						}
+						else {
 							self.tetris.stats.setLines(self.tetris.stats.getLines() + lines);
 							self.tetris.stats.setScore(self.tetris.stats.getScore() + (1000 * self.tetris.stats.getLevel() * lines));
 						}

@@ -108,7 +108,7 @@
 				</table>
 			</div>
 			<div class="stats">
-				<div class="h5">Statistics:</div>
+				<h3>Statistics:</h3>
 				<table cellspacing="0" cellpadding="0">
 				<tr>
 					<td	class="level">Level:</td>
@@ -169,10 +169,14 @@
 				full sources available, it is free to modify.
 				</div>
 				<br>
-				<div>Author: Czarek Tomczak</div>
-				<div>Site: <a href="https://github.com/cis3296s22/prj-03-tetris">https://github.com/cis3296s22/prj-03-tetris</a></div>
+				<div>Authors: Czarek Tomczak (Open Source Owner), Tommy Herner, Shiv Patel, Giray Turker</div>
+				<div>Github: <br><a href="https://github.com/cis3296s22/prj-03-tetris">https://github.com/cis3296s22/prj-03-tetris</a></div>
 				<br>
 				<div>License: BSD revised (free for any use)</div>
+				<div>Sources:</div>
+				<div><a href="https://bestanimations.com/media/mirror-balls/645938848animated-disco-ball-5-2.gif">Disco Ball Gif</a></div>
+				<div><a href="https://i.gifer.com/origin/58/583b923b140aac2ffbdac007052f3d40_w200.gif">Disco Dancer Gif</a></div>
+				<div><a href="https://www.youtube.com/watch?v=I_izvAbhExY">Stayin' Alive - Bee Gees</a></div>
 				</div>
 			</div>
 		</div>
@@ -184,9 +188,11 @@
 				<div id="tetris-multiplayer-content"></div>
 				<div id="multiplayerCooperative">
 					<a href="javascript:void(0)" id="tetris-menu-pause">Cooperative</a>
+					<a><br>Test your skills as a team in a Tetris game where two players work with each other to get the highest score possible! Player 2 starts first!</a>
 				</div>
 				<div id="multiplayerCompetitive">
 					<a href="javascript:void(0)" id="tetris-menu-pause">Competitive</a>
+					<a><br>Test your skills in a head-to-head Tetris game where two players compete against each other to get the highest score! Player 2 starts first!</a>
 				</div>
 				<br>
 			</div>
@@ -218,7 +224,56 @@
 	</div>
 	<div id="tetris-gameover">Game Over</div>
 
+	<div id="right">
+		<div id="stats2">
+		<h3>Player 2 Statistics:</h3>
+			<table cellspacing="0" cellpadding="0">
+			<tr>
+				<td	class="level">Level:</td>
+				<td><span id="tetris-stats-level2">1</span></td>
+			</tr>
+			<tr>
+				<td	class="score">Score:</td>
+				<td><span id="tetris-stats-score2">0</span></td>
+			</tr>
+			<tr>
+				<td	class="lines">Lines:</td>
+				<td><span id="tetris-stats-lines2">0</span></td>
+			</tr>
+			<tr>
+				<td	class="apm">APM:</td>
+				<td><span id="tetris-stats-apm2">0</span></td>
+			</tr>
+			<tr>
+				<td	class="time">Time:</td>
+				<td><span id="tetris-stats-time2">0</span></td>
+			</tr>
+			<tr>
+				<td	class="actions">Actions:</td>
+				<td><span id="tetris-stats-actions2">0</span></td>
+			</tr>
+			<tr>
+				<td	class="leftMovements">Left Movements:</td>
+				<td><span id="tetris-stats-left-movements2">0</span></td>
+			</tr>
+			<tr>
+				<td	class="rightMovements">Right Movements:</td>
+				<td><span id="tetris-stats-right-movements2">0</span></td>
+			</tr>
+			<tr>
+				<td	class="rotations">Rotations:</td>
+				<td><span id="tetris-stats-rotations2">0</span></td>
+			</tr>
+			</table>
+		</div>
+	</div>
+
 </td></tr></table>
+
+
+
+
+
 	<script	type="text/javascript">
 	var tetris = new Tetris();
 	tetris.unit = 14;
