@@ -1,0 +1,260 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+	<title>JsTetris	- javascript tetris - open source</title>
+	<meta http-equiv="Content-Type"	content="text/html;	charset=utf-8">
+	<link href="tetris.css"	rel="stylesheet" type="text/css">
+	<link href="tetris.ico" rel="shortcut icon">
+	<script	type="text/javascript" src="tetris.js"></script>
+	<style type="text/css">
+	html, body { height: 100%; }
+	#tetris	{ margin: 0	auto; }
+	</style>
+</head>
+<body>
+<audio id="discoMusic" src="stayinAlive.webm"></audio>
+
+<table style="width: 100%; height: 100%;" cellspacing="0" cellpadding="0"><tr><td style="vertical-align: middle;">
+
+	<div id="tetris">
+		<div class="left">
+			<h1><div><a href="javascript:void(0)" id="switch">Disco Mode</a>
+			</div></h1>
+			<div class="menu">
+				<div><a href="javascript:void(0)" id="tetris-menu-start">Standard Game</a></div>
+				<div><a href="javascript:void(0)" id="tetris-menu-sprint-start">Sprint Game</a></div>
+				<div><a href="javascript:void(0)" id="tetris-menu-garbage-start">Garbage Game</a></div>
+				<div><a href="javascript:void(0)" id="tetris-menu-multiplayer">Multiplayer</a></div>
+				<div id="tetris-pause">
+					<a href="javascript:void(0)" id="tetris-menu-pause">Pause</a>
+				</div>
+				<div style="display: none;" id="tetris-resume">
+					<a href="javascript:void(0)" id="tetris-menu-resume">Resume</a>
+				</div>
+				<div><a href="javascript:void(0)" id="tetris-menu-highscores">Highscores</a></div>
+				<div><a href="javascript:void(0)" id="tetris-menu-help">About</a></div>
+			</div>
+			<div id="tetris-nextpuzzle"></div>
+			<div id="tetris-keys-player1">
+				<div class="h5">Player 1:</div>
+				<table cellspacing="0" cellpadding="0">
+				<tr>
+					<td>Rotate:</td>
+					<td></td>
+					<td><img src="key-up.gif" width="14" height="14" alt=""></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Move:</td>
+					<td><img src="key-left.gif" width="14" height="14" alt=""></td>
+					<td><img src="key-down.gif" width="14" height="14" alt=""></td>
+					<td><img src="key-right.gif" width="14" height="14" alt=""></td>
+				</tr>
+				<tr>
+					<td>Fall:</td>
+					<td colspan="3">
+						<img src="key-space.gif" width="44" height="13" alt="">
+					</td>
+				</tr>
+				</table>
+			</div>
+			<div id="tetris-keys-player2">
+				<div class="h5">Player 2:</div>
+				<table cellspacing="0" cellpadding="0">
+				<tr>
+					<td>Rotate:</td>
+					<td></td>
+					<td><img src="w-key.png" width="14" height="14" alt=""></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Move:</td>
+					<td><img src="a-key.png" width="14" height="14" alt=""></td>
+					<td><img src="s-key.png" width="14" height="14" alt=""></td>
+					<td><img src="d-key.png" width="14" height="14" alt=""></td>
+				</tr>
+				<tr>
+					<td>Fall:</td>
+					<td colspan="3">
+						<img src="tab-key.png" width="28" height="13" alt="">
+					</td>
+				</tr>
+				</table>
+			</div>
+			<div class="stats">
+				<h3>Statistics:</h3>
+				<table cellspacing="0" cellpadding="0">
+				<tr>
+					<td	class="level">Level:</td>
+					<td><span id="tetris-stats-level">1</span></td>
+				</tr>
+				<tr>
+					<td	class="score">Score:</td>
+					<td><span id="tetris-stats-score">0</span></td>
+				</tr>
+				<tr>
+					<td	class="lines">Lines:</td>
+					<td><span id="tetris-stats-lines">0</span></td>
+				</tr>
+				<tr>
+					<td	class="apm">APM:</td>
+					<td><span id="tetris-stats-apm">0</span></td>
+				</tr>
+				<tr>
+					<td	class="time">Time:</td>
+					<td><span id="tetris-stats-time">0</span></td>
+				</tr>
+				<tr>
+					<td	class="actions">Actions:</td>
+					<td><span id="tetris-stats-actions">0</span></td>
+				</tr>
+				<tr>
+					<td	class="leftMovements">Left Movements:</td>
+					<td><span id="tetris-stats-left-movements">0</span></td>
+				</tr>
+				<tr>
+					<td	class="rightMovements">Right Movements:</td>
+					<td><span id="tetris-stats-right-movements">0</span></td>
+				</tr>
+				<tr>
+					<td	class="rotations">Rotations:</td>
+					<td><span id="tetris-stats-rotations">0</span></td>
+				</tr>
+				</table>
+			</div>
+		</div>
+		<div class="left-border"></div>
+		<div id="tetris-area1">
+			<div class="grid1"></div>
+			<div class="grid2"></div>
+			<div class="grid3"></div>
+			<div class="grid4"></div>
+			<div class="grid5"></div>
+			<div class="grid6"></div>
+		</div>
+		
+		<div id="tetris-help" class="window">
+			<div class="top">
+				About <span id="tetris-help-close" class="close">x</span>
+			</div>
+			<div class="content" style="margin-top:	1em;">
+				<div style="margin-top:	1em;">
+				<div>JsTetris is a highly customizable tetris game written in javascript,
+				full sources available, it is free to modify.
+				</div>
+				<br>
+				<div>Authors: Czarek Tomczak (Open Source Owner), Tommy Herner, Shiv Patel, Giray Turker</div>
+				<div>Github: <br><a href="https://github.com/cis3296s22/prj-03-tetris">https://github.com/cis3296s22/prj-03-tetris</a></div>
+				<br>
+				<div>License: BSD revised (free for any use)</div>
+				<div>Sources:</div>
+				<div><a href="https://bestanimations.com/media/mirror-balls/645938848animated-disco-ball-5-2.gif">Disco Ball Gif</a></div>
+				<div><a href="https://i.gifer.com/origin/58/583b923b140aac2ffbdac007052f3d40_w200.gif">Disco Dancer Gif</a></div>
+				<div><a href="https://www.youtube.com/watch?v=I_izvAbhExY">Stayin' Alive - Bee Gees</a></div>
+				</div>
+			</div>
+		</div>
+		<div id="multiplayerWindow"	class="window">
+			<div class="top">
+				Multiplayer <span id="tetris-highscores-close" class="close">x</span>
+			</div>
+			<div class="content">
+				<div id="tetris-multiplayer-content"></div>
+				<div id="multiplayerCooperative">
+					<a href="javascript:void(0)" id="tetris-menu-pause">Cooperative</a>
+					<a><br>Test your skills as a team in a Tetris game where two players work with each other to get the highest score possible! Player 2 starts first!</a>
+				</div>
+				<div id="multiplayerCompetitive">
+					<a href="javascript:void(0)" id="tetris-menu-pause">Competitive</a>
+					<a><br>Test your skills in a head-to-head Tetris game where two players compete against each other to get the highest score! Player 2 starts first!</a>
+				</div>
+				<br>
+			</div>
+		</div>
+		<div id="tetris-highscores"	class="window">
+			<div class="top">
+				Highscores <span id="tetris-highscores-close" class="close">x</span>
+			</div>
+			<div class="content">
+				<div id="tetris-normal-highscores-content"></div>
+				<div id="tetris-sprint-highscores-content"></div>
+				<div id="tetris-garbage-highscores-content"></div>
+				<br>
+				Note: these	scores are kept	in cookies,	they are only visible to your computer.
+			</div>
+		</div>
+	</div>
+
+	<div id = disco1>
+		<img src="discoBallgif.gif" width="280" height="300" alt="">
+	</div>
+
+	<div id = disco2>
+		<img src="discoBallgif.gif" width="280" height="300" alt="">
+	</div>
+
+	<div id = discoDancer>
+		<img src="discoDance.gif" width="200" height="200" alt="">
+	</div>
+	<div id="tetris-gameover">Game Over</div>
+
+	<div id="right">
+		<div id="stats2">
+		<h3>Player 2 Statistics:</h3>
+			<table cellspacing="0" cellpadding="0">
+			<tr>
+				<td	class="level">Level:</td>
+				<td><span id="tetris-stats-level2">1</span></td>
+			</tr>
+			<tr>
+				<td	class="score">Score:</td>
+				<td><span id="tetris-stats-score2">0</span></td>
+			</tr>
+			<tr>
+				<td	class="lines">Lines:</td>
+				<td><span id="tetris-stats-lines2">0</span></td>
+			</tr>
+			<tr>
+				<td	class="apm">APM:</td>
+				<td><span id="tetris-stats-apm2">0</span></td>
+			</tr>
+			<tr>
+				<td	class="time">Time:</td>
+				<td><span id="tetris-stats-time2">0</span></td>
+			</tr>
+			<tr>
+				<td	class="actions">Actions:</td>
+				<td><span id="tetris-stats-actions2">0</span></td>
+			</tr>
+			<tr>
+				<td	class="leftMovements">Left Movements:</td>
+				<td><span id="tetris-stats-left-movements2">0</span></td>
+			</tr>
+			<tr>
+				<td	class="rightMovements">Right Movements:</td>
+				<td><span id="tetris-stats-right-movements2">0</span></td>
+			</tr>
+			<tr>
+				<td	class="rotations">Rotations:</td>
+				<td><span id="tetris-stats-rotations2">0</span></td>
+			</tr>
+			</table>
+		</div>
+	</div>
+
+</td></tr></table>
+
+
+
+
+
+	<script	type="text/javascript">
+	var tetris = new Tetris();
+	tetris.unit = 14;
+	tetris.areaX = 12;
+	tetris.areaY = 22;
+	</script>
+
+</body>
+</html>
