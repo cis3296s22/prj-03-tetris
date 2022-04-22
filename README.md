@@ -24,7 +24,7 @@ In this project, Javascript, HTML and CSS coding languages to create new release
 - Statistics: This section shows player('s) various data about the game.
 
 # How to run
- -Download the latest release from repository, Uncompress the files and open tetris.html file.
+ - Download the latest release from repository, Uncompress the files and open tetris.html file.
 
 # How to Use the Project
 
@@ -41,7 +41,7 @@ Follow this [project board](http://trello.com/b/sWlulrWJ/tetris) to be informed 
 - What file and target to compile and run. 
 - What is expected to happen when the app start. 
 
-# Include Credits
+#Credits
 
 Collaborators:
 - Thomas M Herner
